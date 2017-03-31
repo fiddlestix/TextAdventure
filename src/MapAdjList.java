@@ -16,9 +16,14 @@ import java.util.ArrayList;
  */
 
 public class MapAdjList {
+    // ******************
+    // ***** Fields *****
+    // ******************
     private ArrayList<ArrayList<Integer>> adjList;
 
-    // Constructor
+    // ************************
+    // ***** Constructors *****
+    // ************************
     public MapAdjList() {
         // Create empty adjacency list
         this.adjList = new ArrayList<ArrayList<Integer>>();
@@ -28,6 +33,9 @@ public class MapAdjList {
         this.adjList = newAdjList;
     }
 
+    // *******************
+    // ***** Methods *****
+    // *******************
     public void addEdge(Integer firstVertexID, Integer secondVertexID) {
         try {
             this.adjList.get(firstVertexID).add(secondVertexID);

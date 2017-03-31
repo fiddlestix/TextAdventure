@@ -16,12 +16,18 @@ import java.util.ArrayList;
  */
 
 public class MapRoom {
+    // ******************
+    // ***** Fields *****
+    // ******************
     private static int roomIndexCounter = 0;
     private Integer roomIndex;
     private String roomName;
     private String roomEntryText;
     public ArrayList<MapRoom> connectedMapRooms;
 
+    // ************************
+    // ***** Constructors *****
+    // ************************
     public MapRoom() {
         this.roomIndex = roomIndexCounter++;
         this.roomName = "Default room name";
@@ -37,6 +43,9 @@ public class MapRoom {
         this.connectedMapRooms = new ArrayList<>(10);
     }
 
+    // *******************************
+    // ***** Getters and Setters *****
+    // *******************************
     public String getRoomEntryText() {
         return this.roomEntryText;
     }

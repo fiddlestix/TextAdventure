@@ -17,10 +17,15 @@ import java.util.ArrayList;
  */
 
 public class MapArea {
+    // ******************
+    // ***** Fields *****
+    // ******************
     private ArrayList<MapRoom> roomsInArea;
     private MapAdjList areaAdjacencyList;
 
-    // Constructor
+    // ************************
+    // ***** Constructors *****
+    // ************************
     public MapArea() {
         this.roomsInArea = new ArrayList<MapRoom>();
         this.areaAdjacencyList = new MapAdjList();
@@ -35,14 +40,9 @@ public class MapArea {
         this.areaAdjacencyList = newAreaAdjacencyList;
     }
 
-    public ArrayList<MapRoom> getRoomsInArea() {
-        return this.roomsInArea;
-    }
-
-    public MapAdjList getAreaAdjacencyList() {
-        return this.areaAdjacencyList;
-    }
-
+    // *******************
+    // ***** Methods *****
+    // *******************
     public void addRoomToArea(MapRoom newRoom) {
         this.getRoomsInArea().add(newRoom);
     }
@@ -58,4 +58,16 @@ public class MapArea {
         }
         return false;
     }
+
+    // *******************************
+    // ***** Getters and Setters *****
+    // *******************************
+    public ArrayList<MapRoom> getRoomsInArea() {
+        return this.roomsInArea;
+    }
+
+    public MapAdjList getAreaAdjacencyList() {
+        return this.areaAdjacencyList;
+    }
+
 }
