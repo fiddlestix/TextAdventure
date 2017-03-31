@@ -1,5 +1,16 @@
 /**
- * Created by jeffs_000 on 3/29/2017.
+ * Text-based Adventure Game
+ *
+ * A project for CMSC 495 7982
+ * Trends and Projects in Computer Science
+ * University of Maryland University College
+ *
+ * Jeff Schouw
+ * Mansukh Saini
+ * Lionel Rockymore
+ *
+ * Main.java
+ * An executable class, contains main() method to start application.
  */
 public class Main {
     public static void main(String[] args) {

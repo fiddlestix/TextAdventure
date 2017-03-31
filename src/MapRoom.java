@@ -1,5 +1,16 @@
 /**
- * Created by jeffs_000 on 3/29/2017.
+ * Text-based Adventure Game
+ *
+ * A project for CMSC 495 7982
+ * Trends and Projects in Computer Science
+ * University of Maryland University College
+ *
+ * Jeff Schouw
+ * Mansukh Saini
+ * Lionel Rockymore
+ *
+ * MapRoom.java
+ * A class for a single room on the map, containing loot, enemies, etc...
  */
 public class MapRoom {
     private String roomEntryText;

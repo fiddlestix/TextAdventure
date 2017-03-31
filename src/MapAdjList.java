@@ -1,10 +1,18 @@
 import java.util.ArrayList;
 
 /**
- * Created by jeffs_000 on 3/29/2017.
+ * Text-based Adventure Game
  *
- * (Might have to add a removeEdge() function later to simulate doors locking behind
- * players or paths being blocked.)
+ * A project for CMSC 495 7982
+ * Trends and Projects in Computer Science
+ * University of Maryland University College
+ *
+ * Jeff Schouw
+ * Mansukh Saini
+ * Lionel Rockymore
+ *
+ * MapAdjList.java
+ * A class that represents connections in an undirected graph.
  */
 public class MapAdjList {
     private ArrayList<ArrayList<Integer>> adjList;

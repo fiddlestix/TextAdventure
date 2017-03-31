@@ -1,7 +1,19 @@
 import java.util.ArrayList;
 
 /**
- * Created by jeffs_000 on 3/29/2017.
+ * Text-based Adventure Game
+ *
+ * A project for CMSC 495 7982
+ * Trends and Projects in Computer Science
+ * University of Maryland University College
+ *
+ * Jeff Schouw
+ * Mansukh Saini
+ * Lionel Rockymore
+ *
+ * MapArea.java
+ * A class that contains a graph of rooms represented by
+ * an adjacency list.
  */
 public class MapArea {
     private ArrayList<MapRoom> roomsInArea;
