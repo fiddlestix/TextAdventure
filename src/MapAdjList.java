@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * MapAdjList.java
  * A class that represents connections in an undirected graph.
  */
+
 public class MapAdjList {
     private ArrayList<ArrayList<Integer>> adjList;
 
