@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * Text-based Adventure Game
  *
@@ -26,8 +29,8 @@ public class Main {
         mapArea.addRoomToArea(new MapRoom("Room 2", "You have entered Room 2."));
         mapArea.addRoomToArea(new MapRoom("Room 3", "You have entered Room 3."));
         // Connect rooms 1→2, and 2→3
-        mapArea.connectRooms(mapArea.getRoomsInArea().get(0), mapArea.getRoomsInArea().get(1));
-        mapArea.connectRooms(mapArea.getRoomsInArea().get(1), mapArea.getRoomsInArea().get(2));
+        mapArea.connectRooms(mapArea.getRoomsInArea().get(0), mapArea.getRoomsInArea().get(1), MapArea.roomConnectionDirection.DIRECTION_NORTHEAST);
+        mapArea.connectRooms(mapArea.getRoomsInArea().get(1), mapArea.getRoomsInArea().get(2), MapArea.roomConnectionDirection.DIRECTION_SOUTHEAST);
         // Create a new player starting in room 1
         Player player = new Player(mapArea.getRoomsInArea().get(0));
         System.out.println("The Player is currently in: " + player.getCurrentMapRoom().getRoomName());
@@ -39,9 +42,38 @@ public class Main {
         System.out.println("Room 2 is connected to Room 3: " + mapArea.getAreaAdjacencyList().isConnected(1, 2));
         System.out.println("Room 1 is connected to Room 3: " + mapArea.getAreaAdjacencyList().isConnected(0, 2));
 
-        // Test moving around rooms
+        System.out.println("");
+        for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
+            if (room != null) {
+                System.out.println("Player's room is connected to " + room.getRoomName() +
+                                   " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
+            }
+        }
+
         player.movePlayerToMapRoom(mapArea.getRoomsInArea().get(1));
+        System.out.println("\nMoved player to room: " + player.getCurrentMapRoom().getRoomName());
+        for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
+            if (room != null) {
+                System.out.println("Player's room is connected to " + room.getRoomName() +
+                        " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
+            }
+        }
+
         player.movePlayerToMapRoom(mapArea.getRoomsInArea().get(2));
-        player.movePlayerToMapRoom(mapArea.getRoomsInArea().get(0)); // This should fail, room 3 isn't connected to 1
+        System.out.println("\nMoved player to room: " + player.getCurrentMapRoom().getRoomName());
+        for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
+            if (room != null) {
+                System.out.println("Player's room is connected to " + room.getRoomName() +
+                        " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
+            }
+        }
+    }
+
+    public static String convertIndexToDirectionString(Integer index) {
+        String[] directionStrings = {"north", "south", "east", "west",
+                                     "northeast", "southwest", "northwest",
+                                     "southeast", "up", "down"};
+
+        return directionStrings[index];
     }
 }

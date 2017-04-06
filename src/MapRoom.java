@@ -34,6 +34,7 @@ public class MapRoom {
         this.roomEntryText = "Default text on entering a room.";
         this.connectedMapRooms = new ArrayList<>(10); // 10 for each direction:
         // N, NE, E, SE, S, SW, W, NW, UP, DOWN
+        setConnectedMapRoomsToNull();
     }
 
     public MapRoom(String newRoomName, String newRoomEntryText) {
@@ -41,6 +42,7 @@ public class MapRoom {
         this.roomName = newRoomName;
         this.roomEntryText = newRoomEntryText;
         this.connectedMapRooms = new ArrayList<>(10);
+        setConnectedMapRoomsToNull();
     }
 
     // *******************************
@@ -60,5 +62,12 @@ public class MapRoom {
 
     public ArrayList<MapRoom> getConnectedMapRooms() {
         return this.connectedMapRooms;
+    }
+
+    private void setConnectedMapRoomsToNull() {
+        for (int i = 0; i < 10; i++) {
+            this.connectedMapRooms.add(i, null);
+        }
+
     }
 }

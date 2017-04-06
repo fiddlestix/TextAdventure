@@ -23,6 +23,19 @@ public class MapArea {
     private ArrayList<MapRoom> roomsInArea;
     private MapAdjList areaAdjacencyList;
 
+    public enum roomConnectionDirection {
+        DIRECTION_NORTH,
+        DIRECTION_SOUTH,
+        DIRECTION_EAST,
+        DIRECTION_WEST,
+        DIRECTION_NORTHEAST,
+        DIRECTION_SOUTHWEST,
+        DIRECTION_NORTHWEST,
+        DIRECTION_SOUTHEAST,
+        DIRECTION_UP,
+        DIRECTION_DOWN
+    }
+
     // ************************
     // ***** Constructors *****
     // ************************
@@ -47,13 +60,19 @@ public class MapArea {
         this.getRoomsInArea().add(newRoom);
     }
 
-    public boolean connectRooms(MapRoom firstRoom, MapRoom secondRoom) {
+    public boolean connectRooms(MapRoom firstRoom, MapRoom secondRoom, roomConnectionDirection direction) {
         // returns true if successful, false if failed
         if (this.getRoomsInArea().contains(firstRoom) && this.getRoomsInArea().contains(secondRoom)) {
             this.getAreaAdjacencyList().addEdge(firstRoom.getRoomIndex(), secondRoom.getRoomIndex());
-            firstRoom.getConnectedMapRooms().add(secondRoom);
-            secondRoom.getConnectedMapRooms().add(firstRoom); // going to have to change this later to use the
-            // connectedMapRooms array to indicate direction the room is connected in
+
+            firstRoom.getConnectedMapRooms().add(direction.ordinal(), secondRoom);
+
+            if (direction.ordinal() % 2 == 0) {
+                secondRoom.getConnectedMapRooms().add(direction.ordinal() + 1, firstRoom);
+            } else {
+                secondRoom.getConnectedMapRooms().add(direction.ordinal() - 1, firstRoom);
+            }
+
             return true;
         }
         return false;
