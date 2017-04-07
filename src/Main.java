@@ -33,39 +33,21 @@ public class Main {
         mapArea.connectRooms(mapArea.getRoomsInArea().get(1), mapArea.getRoomsInArea().get(2), MapArea.roomConnectionDirection.DIRECTION_SOUTHEAST);
         // Create a new player starting in room 1
         Player player = new Player(mapArea.getRoomsInArea().get(0));
-        System.out.println("The Player is currently in: " + player.getCurrentMapRoom().getRoomName());
-        System.out.println("The index for this room is: " + player.getCurrentMapRoom().getRoomIndex());
-        System.out.println("The entry text for the current room is:");
-        System.out.println(player.getCurrentMapRoom().getRoomEntryText());
+        // Create a parser for handling command input
+        Parser parser = new Parser(player);
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\nRoom 1 is connected to Room 2: " + mapArea.getAreaAdjacencyList().isConnected(0, 1));
-        System.out.println("Room 2 is connected to Room 3: " + mapArea.getAreaAdjacencyList().isConnected(1, 2));
-        System.out.println("Room 1 is connected to Room 3: " + mapArea.getAreaAdjacencyList().isConnected(0, 2));
 
-        System.out.println("");
-        for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
-            if (room != null) {
-                System.out.println("Player's room is connected to " + room.getRoomName() +
-                                   " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
+
+        while(true) {
+            for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
+                if (room != null) {
+                    System.out.println("Player's room is connected to " + room.getRoomName() +
+                            " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
+                }
             }
-        }
 
-        player.movePlayerToMapRoom(mapArea.getRoomsInArea().get(1));
-        System.out.println("\nMoved player to room: " + player.getCurrentMapRoom().getRoomName());
-        for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
-            if (room != null) {
-                System.out.println("Player's room is connected to " + room.getRoomName() +
-                        " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
-            }
-        }
-
-        player.movePlayerToMapRoom(mapArea.getRoomsInArea().get(2));
-        System.out.println("\nMoved player to room: " + player.getCurrentMapRoom().getRoomName());
-        for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
-            if (room != null) {
-                System.out.println("Player's room is connected to " + room.getRoomName() +
-                        " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
-            }
+            parser.parseCommand(scanner.nextLine());
         }
     }
 
