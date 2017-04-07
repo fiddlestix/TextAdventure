@@ -1,5 +1,6 @@
 package textadventure;
 
+import textadventure.MapArea.roomConnectionDirection;
 /**
  * Text-based Adventure Game
  *

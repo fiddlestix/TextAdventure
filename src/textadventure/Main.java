@@ -54,13 +54,8 @@ public class Main {
         // Create game loop to wait for and capture user input
         while(true) {
             System.out.println("");
-            // Show all rooms the player's current room is connected to
-            for (roomConnectionDirection direction : roomConnectionDirection.values()) {
-                if (player.getCurrentMapRoom().getConnectedMapRooms().get(direction) != null) {
-                    System.out.println("Player's room is connected to " + player.getCurrentMapRoom().getConnectedMapRooms().get(direction).getRoomName() +
-                                       " to the " + MapArea.convertDirectionToString(direction));
-                }
-            }
+            MapRoom.printConnectedMapRooms(player.getCurrentMapRoom());
+            System.out.println("");
             // Parse and execute the command entered by the user
             parser.parseCommand(scanner.nextLine());
         }

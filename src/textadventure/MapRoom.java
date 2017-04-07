@@ -48,6 +48,40 @@ class MapRoom {
         setConnectedMapRoomsToNull();
     }
 
+    // *******************
+    // ***** Methods *****
+    // *******************
+    static void printConnectedMapRooms(MapRoom room) {
+        StringBuffer stringBuffer = new StringBuffer("");
+        int count = 0;
+        int stopCount = 0;
+
+        for (roomConnectionDirection direction : roomConnectionDirection.values()) {
+            if (room.getConnectedMapRooms().get(direction) != null) {
+                stopCount++;
+            }
+        }
+
+        for (roomConnectionDirection direction : roomConnectionDirection.values()) {
+            if (room.getConnectedMapRooms().get(direction) != null) {
+                if (count == 0) {
+                    stringBuffer.append("This room is connected to " + room.getConnectedMapRooms().get(direction).getRoomName() +
+                            " to the " + MapArea.convertDirectionToString(direction));
+                    count++;
+                } else if (count > 0 && count < stopCount - 1) {
+                    stringBuffer.append(",\n" + room.getConnectedMapRooms().get(direction).getRoomName() +
+                                        " to the " + MapArea.convertDirectionToString(direction) + ",");
+                    count++;
+                } else if (count == stopCount - 1){
+                    stringBuffer.append("\nand " + room.getConnectedMapRooms().get(direction).getRoomName() +
+                            " to the " + MapArea.convertDirectionToString(direction));
+                }
+            }
+        }
+        stringBuffer.append(".");
+        System.out.println(stringBuffer);
+    }
+
     // *******************************
     // ***** Getters and Setters *****
     // *******************************
