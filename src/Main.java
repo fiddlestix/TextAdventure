@@ -24,56 +24,43 @@ public class Main {
 
         // Create map area to hold rooms
         MapArea mapArea = new MapArea();
+
         // Add rooms to map area
         mapArea.addRoomToArea(new MapRoom("Room 1", "You have entered Room 1."));
         mapArea.addRoomToArea(new MapRoom("Room 2", "You have entered Room 2."));
         mapArea.addRoomToArea(new MapRoom("Room 3", "You have entered Room 3."));
-        // Connect rooms 1→2, and 2→3
-        mapArea.connectRooms(mapArea.getRoomsInArea().get(0), mapArea.getRoomsInArea().get(1), MapArea.roomConnectionDirection.DIRECTION_NORTHEAST);
-        mapArea.connectRooms(mapArea.getRoomsInArea().get(1), mapArea.getRoomsInArea().get(2), MapArea.roomConnectionDirection.DIRECTION_SOUTHEAST);
+        mapArea.addRoomToArea(new MapRoom("Room 4", "You have entered Room 4."));
+        mapArea.addRoomToArea(new MapRoom("Room 5", "You have entered Room 5."));
+        mapArea.addRoomToArea(new MapRoom("Room 6", "You have entered Room 6."));
+
+        // Connect rooms
+        mapArea.connectRooms(mapArea.getRoomsInArea().get(0), mapArea.getRoomsInArea().get(1), MapArea.roomConnectionDirection.DIRECTION_EAST);
+        mapArea.connectRooms(mapArea.getRoomsInArea().get(1), mapArea.getRoomsInArea().get(2), MapArea.roomConnectionDirection.DIRECTION_SOUTH);
+        mapArea.connectRooms(mapArea.getRoomsInArea().get(2), mapArea.getRoomsInArea().get(5), MapArea.roomConnectionDirection.DIRECTION_NORTHWEST);
+        mapArea.connectRooms(mapArea.getRoomsInArea().get(2), mapArea.getRoomsInArea().get(3), MapArea.roomConnectionDirection.DIRECTION_SOUTHWEST);
+        mapArea.connectRooms(mapArea.getRoomsInArea().get(3), mapArea.getRoomsInArea().get(4), MapArea.roomConnectionDirection.DIRECTION_NORTHWEST);
+        mapArea.connectRooms(mapArea.getRoomsInArea().get(4), mapArea.getRoomsInArea().get(5), MapArea.roomConnectionDirection.DIRECTION_NORTH);
+        mapArea.connectRooms(mapArea.getRoomsInArea().get(0), mapArea.getRoomsInArea().get(5), MapArea.roomConnectionDirection.DIRECTION_SOUTH);
+
         // Create a new player starting in room 1
         Player player = new Player(mapArea.getRoomsInArea().get(0));
-        System.out.println("The Player is currently in: " + player.getCurrentMapRoom().getRoomName());
-        System.out.println("The index for this room is: " + player.getCurrentMapRoom().getRoomIndex());
-        System.out.println("The entry text for the current room is:");
-        System.out.println(player.getCurrentMapRoom().getRoomEntryText());
 
-        System.out.println("\nRoom 1 is connected to Room 2: " + mapArea.getAreaAdjacencyList().isConnected(0, 1));
-        System.out.println("Room 2 is connected to Room 3: " + mapArea.getAreaAdjacencyList().isConnected(1, 2));
-        System.out.println("Room 1 is connected to Room 3: " + mapArea.getAreaAdjacencyList().isConnected(0, 2));
+        // Create a parser for handling command input
+        Parser parser = new Parser(player);
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("");
-        for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
-            if (room != null) {
-                System.out.println("Player's room is connected to " + room.getRoomName() +
-                                   " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
+        // Create game loop to wait for and capture user input
+        while(true) {
+            System.out.println("");
+            // Show all rooms the player's current room is connected to
+            for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
+                if (room != null) {
+                    System.out.println("Player's room is connected to " + room.getRoomName() +
+                            " to the " + MapArea.convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
+                }
             }
+            // Parse and execute the command entered by the user
+            parser.parseCommand(scanner.nextLine());
         }
-
-        player.movePlayerToMapRoom(mapArea.getRoomsInArea().get(1));
-        System.out.println("\nMoved player to room: " + player.getCurrentMapRoom().getRoomName());
-        for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
-            if (room != null) {
-                System.out.println("Player's room is connected to " + room.getRoomName() +
-                        " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
-            }
-        }
-
-        player.movePlayerToMapRoom(mapArea.getRoomsInArea().get(2));
-        System.out.println("\nMoved player to room: " + player.getCurrentMapRoom().getRoomName());
-        for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
-            if (room != null) {
-                System.out.println("Player's room is connected to " + room.getRoomName() +
-                        " to the " + convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
-            }
-        }
-    }
-
-    public static String convertIndexToDirectionString(Integer index) {
-        String[] directionStrings = {"north", "south", "east", "west",
-                                     "northeast", "southwest", "northwest",
-                                     "southeast", "up", "down"};
-
-        return directionStrings[index];
     }
 }

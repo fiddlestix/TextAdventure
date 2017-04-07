@@ -12,7 +12,8 @@
  * Player.java
  * A class representing the user.
  */
-public class Player {
+
+class Player {
     // ******************
     // ***** Fields *****
     // ******************
@@ -21,17 +22,18 @@ public class Player {
     // ************************
     // ***** Constructors *****
     // ************************
-    public Player(MapRoom startingMapRoom) {
+    Player(MapRoom startingMapRoom) {
         currentMapRoom = startingMapRoom;
+        System.out.println(currentMapRoom.getRoomEntryText());
     }
 
     // *******************
     // ***** Methods *****
     // *******************
-    public boolean movePlayerToMapRoom(MapRoom newMapRoom) {
+    boolean movePlayerToMapRoom(MapRoom newMapRoom) {
         if (this.currentMapRoom.getConnectedMapRooms().contains(newMapRoom)) {
             this.currentMapRoom = newMapRoom;
-            System.out.println(newMapRoom.getRoomEntryText()); // 'enter' the room, change this later!
+            System.out.println(currentMapRoom.getRoomEntryText()); // 'enter' the room, change this later!
             return true;
         } else {
             System.out.println("You cannot move there"); // change this later!
@@ -42,7 +44,7 @@ public class Player {
     // *******************************
     // ***** Getters and Setters *****
     // *******************************
-    public MapRoom getCurrentMapRoom() {
+    MapRoom getCurrentMapRoom() {
         return this.currentMapRoom;
     }
 }
