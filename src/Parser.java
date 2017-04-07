@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Text-based Adventure Game
@@ -15,6 +14,7 @@ import java.util.Objects;
  * Parser.java
  * A class to parse console commands and execute them.
  */
+
 public class Parser {
     // ******************
     // ***** Fields *****
@@ -60,6 +60,9 @@ public class Parser {
         }
     }
 
+    /*
+      There's gotta be a better way to do this right? I feel like there's a lot of repeated code for the directional commands
+     */
     public void north() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTH.ordinal()) != null) {
             player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTH.ordinal()));

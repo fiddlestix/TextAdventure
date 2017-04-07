@@ -23,7 +23,7 @@ public class MapRoom {
     private Integer roomIndex;
     private String roomName;
     private String roomEntryText;
-    public ArrayList<MapRoom> connectedMapRooms;
+    private ArrayList<MapRoom> connectedMapRooms;
 
     // ************************
     // ***** Constructors *****
@@ -38,7 +38,8 @@ public class MapRoom {
     }
 
     public MapRoom(String newRoomName, String newRoomEntryText) {
-        this.roomIndex = roomIndexCounter++;
+        this.roomIndex = roomIndexCounter;
+        roomIndexCounter++;
         this.roomName = newRoomName;
         this.roomEntryText = newRoomEntryText;
         this.connectedMapRooms = new ArrayList<>(10);

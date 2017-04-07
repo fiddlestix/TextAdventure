@@ -63,19 +63,27 @@ public class MapArea {
     public boolean connectRooms(MapRoom firstRoom, MapRoom secondRoom, roomConnectionDirection direction) {
         // returns true if successful, false if failed
         if (this.getRoomsInArea().contains(firstRoom) && this.getRoomsInArea().contains(secondRoom)) {
-            this.getAreaAdjacencyList().addEdge(firstRoom.getRoomIndex(), secondRoom.getRoomIndex());
+            //this.getAreaAdjacencyList().addEdge(firstRoom.getRoomIndex(), secondRoom.getRoomIndex());
 
-            firstRoom.getConnectedMapRooms().add(direction.ordinal(), secondRoom);
+            firstRoom.getConnectedMapRooms().set(direction.ordinal(), secondRoom);
 
             if (direction.ordinal() % 2 == 0) {
-                secondRoom.getConnectedMapRooms().add(direction.ordinal() + 1, firstRoom);
+                secondRoom.getConnectedMapRooms().set(direction.ordinal() + 1, firstRoom);
             } else {
-                secondRoom.getConnectedMapRooms().add(direction.ordinal() - 1, firstRoom);
+                secondRoom.getConnectedMapRooms().set(direction.ordinal() - 1, firstRoom);
             }
 
             return true;
         }
         return false;
+    }
+
+    public static String convertIndexToDirectionString(Integer index) {
+        String[] directionStrings = {"north", "south", "east", "west",
+                "northeast", "southwest", "northwest",
+                "southeast", "up", "down"};
+
+        return directionStrings[index];
     }
 
     // *******************************
