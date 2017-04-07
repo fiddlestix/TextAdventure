@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+package textadventure;
+
+import java.util.EnumMap;
+import textadventure.MapArea.roomConnectionDirection;
 
 /**
  * Text-based Adventure Game
@@ -23,7 +26,7 @@ class MapRoom {
     private Integer roomIndex;
     private String roomName;
     private String roomEntryText;
-    private ArrayList<MapRoom> connectedMapRooms;
+    private EnumMap<roomConnectionDirection, MapRoom> connectedMapRooms;
 
     // ************************
     // ***** Constructors *****
@@ -32,8 +35,7 @@ class MapRoom {
         this.roomIndex = roomIndexCounter++;
         this.roomName = "Default room name";
         this.roomEntryText = "Default text on entering a room.";
-        this.connectedMapRooms = new ArrayList<>(10); // 10 for each direction:
-        // N, NE, E, SE, S, SW, W, NW, UP, DOWN
+        this.connectedMapRooms = new EnumMap<>(roomConnectionDirection.class);
         setConnectedMapRoomsToNull();
     }
 
@@ -42,7 +44,7 @@ class MapRoom {
         roomIndexCounter++;
         this.roomName = newRoomName;
         this.roomEntryText = newRoomEntryText;
-        this.connectedMapRooms = new ArrayList<>(10);
+        this.connectedMapRooms = new EnumMap<>(roomConnectionDirection.class);
         setConnectedMapRoomsToNull();
     }
 
@@ -61,14 +63,13 @@ class MapRoom {
         return this.roomIndex;
     }
 
-    ArrayList<MapRoom> getConnectedMapRooms() {
+    EnumMap<roomConnectionDirection, MapRoom> getConnectedMapRooms() {
         return this.connectedMapRooms;
     }
 
     private void setConnectedMapRoomsToNull() {
-        for (int i = 0; i < 10; i++) {
-            this.connectedMapRooms.add(i, null);
+        for (roomConnectionDirection direction : roomConnectionDirection.values()) {
+            this.connectedMapRooms.put(direction, null);
         }
-
     }
 }

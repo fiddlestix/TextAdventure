@@ -1,3 +1,5 @@
+package textadventure;
+
 /**
  * Text-based Adventure Game
  *
@@ -31,12 +33,11 @@ class Player {
     // ***** Methods *****
     // *******************
     boolean movePlayerToMapRoom(MapRoom newMapRoom) {
-        if (this.currentMapRoom.getConnectedMapRooms().contains(newMapRoom)) {
+        if (this.currentMapRoom.getConnectedMapRooms().containsValue(newMapRoom)) {
             this.currentMapRoom = newMapRoom;
             System.out.println(currentMapRoom.getRoomEntryText()); // 'enter' the room, change this later!
             return true;
         } else {
-            System.out.println("You cannot move there"); // change this later!
             return false;
         }
     }
