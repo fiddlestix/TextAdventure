@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * A class for a single room on the map, containing loot, enemies, etc...
  */
 
-public class MapRoom {
+class MapRoom {
     // ******************
     // ***** Fields *****
     // ******************
@@ -28,7 +28,7 @@ public class MapRoom {
     // ************************
     // ***** Constructors *****
     // ************************
-    public MapRoom() {
+    MapRoom() {
         this.roomIndex = roomIndexCounter++;
         this.roomName = "Default room name";
         this.roomEntryText = "Default text on entering a room.";
@@ -37,7 +37,7 @@ public class MapRoom {
         setConnectedMapRoomsToNull();
     }
 
-    public MapRoom(String newRoomName, String newRoomEntryText) {
+    MapRoom(String newRoomName, String newRoomEntryText) {
         this.roomIndex = roomIndexCounter;
         roomIndexCounter++;
         this.roomName = newRoomName;
@@ -49,19 +49,19 @@ public class MapRoom {
     // *******************************
     // ***** Getters and Setters *****
     // *******************************
-    public String getRoomEntryText() {
+    String getRoomEntryText() {
         return this.roomEntryText;
     }
 
-    public String getRoomName() {
+    String getRoomName() {
         return this.roomName;
     }
 
-    public Integer getRoomIndex() {
+    Integer getRoomIndex() {
         return this.roomIndex;
     }
 
-    public ArrayList<MapRoom> getConnectedMapRooms() {
+    ArrayList<MapRoom> getConnectedMapRooms() {
         return this.connectedMapRooms;
     }
 

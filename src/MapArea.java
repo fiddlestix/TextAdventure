@@ -16,14 +16,14 @@ import java.util.ArrayList;
  * an adjacency list.
  */
 
-public class MapArea {
+class MapArea {
     // ******************
     // ***** Fields *****
     // ******************
     private ArrayList<MapRoom> roomsInArea;
     private MapAdjList areaAdjacencyList;
 
-    public enum roomConnectionDirection {
+    enum roomConnectionDirection {
         DIRECTION_NORTH,
         DIRECTION_SOUTH,
         DIRECTION_EAST,
@@ -39,16 +39,16 @@ public class MapArea {
     // ************************
     // ***** Constructors *****
     // ************************
-    public MapArea() {
-        this.roomsInArea = new ArrayList<MapRoom>();
+    MapArea() {
+        this.roomsInArea = new ArrayList<>();
         this.areaAdjacencyList = new MapAdjList();
     }
 
-    public MapArea(ArrayList<MapRoom> newRoomsInArea) {
+    MapArea(ArrayList<MapRoom> newRoomsInArea) {
         this.roomsInArea = newRoomsInArea;
     }
 
-    public MapArea(ArrayList<MapRoom> newRoomsInArea, MapAdjList newAreaAdjacencyList) {
+    MapArea(ArrayList<MapRoom> newRoomsInArea, MapAdjList newAreaAdjacencyList) {
         this.roomsInArea = newRoomsInArea;
         this.areaAdjacencyList = newAreaAdjacencyList;
     }
@@ -56,11 +56,11 @@ public class MapArea {
     // *******************
     // ***** Methods *****
     // *******************
-    public void addRoomToArea(MapRoom newRoom) {
+    void addRoomToArea(MapRoom newRoom) {
         this.getRoomsInArea().add(newRoom);
     }
 
-    public boolean connectRooms(MapRoom firstRoom, MapRoom secondRoom, roomConnectionDirection direction) {
+    boolean connectRooms(MapRoom firstRoom, MapRoom secondRoom, roomConnectionDirection direction) {
         // returns true if successful, false if failed
         if (this.getRoomsInArea().contains(firstRoom) && this.getRoomsInArea().contains(secondRoom)) {
             //this.getAreaAdjacencyList().addEdge(firstRoom.getRoomIndex(), secondRoom.getRoomIndex());
@@ -78,7 +78,7 @@ public class MapArea {
         return false;
     }
 
-    public static String convertIndexToDirectionString(Integer index) {
+    static String convertIndexToDirectionString(Integer index) {
         String[] directionStrings = {"north", "south", "east", "west",
                 "northeast", "southwest", "northwest",
                 "southeast", "up", "down"};
@@ -89,11 +89,11 @@ public class MapArea {
     // *******************************
     // ***** Getters and Setters *****
     // *******************************
-    public ArrayList<MapRoom> getRoomsInArea() {
+    ArrayList<MapRoom> getRoomsInArea() {
         return this.roomsInArea;
     }
 
-    public MapAdjList getAreaAdjacencyList() {
+    MapAdjList getAreaAdjacencyList() {
         return this.areaAdjacencyList;
     }
 

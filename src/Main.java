@@ -24,6 +24,7 @@ public class Main {
 
         // Create map area to hold rooms
         MapArea mapArea = new MapArea();
+
         // Add rooms to map area
         mapArea.addRoomToArea(new MapRoom("Room 1", "You have entered Room 1."));
         mapArea.addRoomToArea(new MapRoom("Room 2", "You have entered Room 2."));
@@ -43,19 +44,22 @@ public class Main {
 
         // Create a new player starting in room 1
         Player player = new Player(mapArea.getRoomsInArea().get(0));
+
         // Create a parser for handling command input
         Parser parser = new Parser(player);
         Scanner scanner = new Scanner(System.in);
 
+        // Create game loop to wait for and capture user input
         while(true) {
             System.out.println("");
+            // Show all rooms the player's current room is connected to
             for (MapRoom room : player.getCurrentMapRoom().getConnectedMapRooms()) {
                 if (room != null) {
                     System.out.println("Player's room is connected to " + room.getRoomName() +
                             " to the " + MapArea.convertIndexToDirectionString(player.getCurrentMapRoom().getConnectedMapRooms().indexOf(room)));
                 }
             }
-
+            // Parse and execute the command entered by the user
             parser.parseCommand(scanner.nextLine());
         }
     }

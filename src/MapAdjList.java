@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * A class that represents connections in an undirected graph.
  */
 
-public class MapAdjList {
+class MapAdjList {
     // ******************
     // ***** Fields *****
     // ******************
@@ -24,35 +24,35 @@ public class MapAdjList {
     // ************************
     // ***** Constructors *****
     // ************************
-    public MapAdjList() {
+    MapAdjList() {
         // Create empty adjacency list
-        this.adjList = new ArrayList<ArrayList<Integer>>();
+        this.adjList = new ArrayList<>();
     }
 
-    public MapAdjList(ArrayList<ArrayList<Integer>> newAdjList) {
+    MapAdjList(ArrayList<ArrayList<Integer>> newAdjList) {
         this.adjList = newAdjList;
     }
 
     // *******************
     // ***** Methods *****
     // *******************
-    public void addEdge(Integer firstVertexID, Integer secondVertexID) {
+    void addEdge(Integer firstVertexID, Integer secondVertexID) {
         try {
             this.adjList.get(firstVertexID).add(secondVertexID);
         } catch (IndexOutOfBoundsException e) {
-            this.adjList.add(firstVertexID, new ArrayList<Integer>());
+            this.adjList.add(firstVertexID, new ArrayList<>());
             this.adjList.get(firstVertexID).add(secondVertexID);
         }
         try {
             this.adjList.get(secondVertexID).add(firstVertexID);
         } catch (IndexOutOfBoundsException e) {
-            this.adjList.add(secondVertexID, new ArrayList<Integer>());
+            this.adjList.add(secondVertexID, new ArrayList<>());
             this.adjList.get(secondVertexID).add(firstVertexID);
         }
 
     }
 
-    public boolean isConnected(Integer firstVertexID, Integer secondVertexID) {
+    boolean isConnected(Integer firstVertexID, Integer secondVertexID) {
         return this.adjList.get(firstVertexID).contains(secondVertexID) &&
                 this.adjList.get(secondVertexID).contains(firstVertexID);
     }
