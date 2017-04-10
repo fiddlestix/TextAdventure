@@ -1,5 +1,6 @@
 package textadventure;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import textadventure.MapArea.roomConnectionDirection;
 
@@ -27,6 +28,7 @@ class MapRoom {
     private String roomName;
     private String roomEntryText;
     private EnumMap<roomConnectionDirection, MapRoom> connectedMapRooms;
+    private ArrayList<Item> itemsInRoom;
 
     // ************************
     // ***** Constructors *****
@@ -37,6 +39,7 @@ class MapRoom {
         this.roomEntryText = "Default text on entering a room.";
         this.connectedMapRooms = new EnumMap<>(roomConnectionDirection.class);
         setConnectedMapRoomsToNull();
+        itemsInRoom = new ArrayList<>();
     }
 
     MapRoom(String newRoomName, String newRoomEntryText) {
@@ -46,6 +49,7 @@ class MapRoom {
         this.roomEntryText = newRoomEntryText;
         this.connectedMapRooms = new EnumMap<>(roomConnectionDirection.class);
         setConnectedMapRoomsToNull();
+        itemsInRoom = new ArrayList<>();
     }
 
     // *******************
@@ -105,5 +109,9 @@ class MapRoom {
         for (roomConnectionDirection direction : roomConnectionDirection.values()) {
             this.connectedMapRooms.put(direction, null);
         }
+    }
+
+    ArrayList<Item> getItemsInRoom() {
+        return this.itemsInRoom;
     }
 }

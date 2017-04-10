@@ -55,7 +55,9 @@ public class Main {
         player.addItemToInventory(new Item("TestItem1", "First test item."));
         player.addItemToInventory(new Item("TestItem2", "Second test item."));
         player.equipWeapon((Weapon) player.getInventory().get(0)); // equip TestWeapon1
-        player.equipArmor((Armor) player.getInventory().get(1));
+        player.equipArmor((Armor) player.getInventory().get(1)); // equip TestArmor1
+
+        player.getCurrentMapRoom().getItemsInRoom().add(new Item("TestRoomItem1", "Test item for take command"));
 
         // Create a parser for handling command input
         Parser parser = new Parser(player);
@@ -68,6 +70,11 @@ public class Main {
         while(true) {
             System.out.println("");
             MapRoom.printConnectedMapRooms(player.getCurrentMapRoom());
+
+            System.out.println("\nItems in room:");
+            for (Item item : player.getCurrentMapRoom().getItemsInRoom()) {
+                System.out.println(item.getName());
+            }
             System.out.println("");
             // Parse and execute the command entered by the user
             parser.parseCommand(scanner.nextLine());

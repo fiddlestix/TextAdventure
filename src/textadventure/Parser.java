@@ -36,7 +36,10 @@ class Parser {
     // ***** Methods *****
     // *******************
     void parseCommand(String str) {
-        switch (str) {
+        // Split string by spaces to separate commands from params
+        String[] input = str.split(" ");
+
+        switch (input[0]) {
             case "n": north(); break;
             case "north": north(); break;
             case "s": south(); break;
@@ -61,6 +64,9 @@ class Parser {
             case "quit": quit(); break;
             case "help": help(); break;
             case "inventory": inventory(); break;
+            case "take": take(input[1]); break;
+            case "drop": drop(input[1]); break;
+            case "equip": equip(input[1]); break;
             default: invalidCommand(); break;
         }
     }
@@ -146,7 +152,8 @@ class Parser {
         System.out.println("Directional commands: n/north, s/south, e/east, w/west");
         System.out.println("ne/northeast, nw/northwest, se/southeast, sw/southwest");
         System.out.println("up, down");
-        System.out.println("Other commands: inventory, q/quit");
+        System.out.println("Other commands: inventory, take, drop, equip");
+        System.out.println("                q/quit");
     }
 
     private void inventory() {
@@ -172,6 +179,60 @@ class Parser {
         System.out.println("Items:");
         for (Item item : player.getInventory()) {
             System.out.println(item.getName());
+        }
+    }
+
+    private void take(String inputString) {
+        boolean itemFound = false;
+        for(Item item : player.getCurrentMapRoom().getItemsInRoom()) {
+            if (Objects.equals(inputString, item.getName())) {
+                player.addItemToInventory(item);
+                player.getCurrentMapRoom().getItemsInRoom().remove(item);
+                itemFound = true;
+                System.out.println(item.getName() + " added to inventory."); // delete this notifaction later
+                break;
+            }
+        }
+        if (!itemFound) {
+            System.out.println("No item called " + inputString + " found in current room.");
+            // delete this notification later, find a better way to notify player
+        }
+    }
+
+    private void drop(String inputString) {
+        boolean itemFound = false;
+        for (Item item : player.getInventory()) {
+            if (Objects.equals(inputString, item.getName())) {
+                player.getCurrentMapRoom().getItemsInRoom().add(item);
+                player.getInventory().remove(item);
+                itemFound = true;
+                System.out.println(item.getName() + " removed from inventory and added to current room.");
+                break;
+            }
+        }
+        if (!itemFound) {
+            System.out.println("No item called " + inputString + " found in player's inventory.");
+        }
+    }
+
+    private void equip(String inputString) {
+        boolean itemFound = false;
+        for (Item item : player.getInventory()) {
+            if (Objects.equals(inputString, item.getName())) {
+                itemFound = true;
+                if (item.getClass() == Weapon.class) {
+                    System.out.println(player.getEquippedWeapon().getName() + " unequipped.");
+                    player.equipWeapon((Weapon) item);
+                } else if (item.getClass() == Armor.class) {
+                    System.out.println(player.getEquippedArmor().getName() + " unequipped.");
+                    player.equipArmor((Armor) item);
+                }
+                System.out.println(item.getName() + " equipped.");
+                break;
+            }
+        }
+        if (!itemFound) {
+            System.out.println("No item called " + inputString + " found in player's inventory.");
         }
     }
 }
