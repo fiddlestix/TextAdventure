@@ -64,9 +64,24 @@ class Parser {
             case "quit": quit(); break;
             case "help": help(); break;
             case "inventory": inventory(); break;
-            case "take": take(input[1]); break;
-            case "drop": drop(input[1]); break;
-            case "equip": equip(input[1]); break;
+            case "take":
+                if (input.length  != 2) {
+                    System.out.println("Missing or incorrect parameters. Try again.");
+                    break;
+                }
+                take(input[1]); break;
+            case "drop":
+                if (input.length  != 2) {
+                    System.out.println("Missing or incorrect parameters. Try again.");
+                    break;
+                }
+                drop(input[1]); break;
+            case "equip":
+                if (input.length  != 2) {
+                    System.out.println("Missing or incorrect parameters. Try again.");
+                    break;
+                }
+                equip(input[1]); break;
             default: invalidCommand(); break;
         }
     }
@@ -223,11 +238,14 @@ class Parser {
                 if (item.getClass() == Weapon.class) {
                     System.out.println(player.getEquippedWeapon().getName() + " unequipped.");
                     player.equipWeapon((Weapon) item);
+                    System.out.println(item.getName() + " equipped.");
                 } else if (item.getClass() == Armor.class) {
                     System.out.println(player.getEquippedArmor().getName() + " unequipped.");
                     player.equipArmor((Armor) item);
+                    System.out.println(item.getName() + " equipped.");
+                } else {
+                    System.out.println("Item is not a weapon or piece of armor. Try again.");
                 }
-                System.out.println(item.getName() + " equipped.");
                 break;
             }
         }
