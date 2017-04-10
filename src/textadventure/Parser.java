@@ -2,6 +2,8 @@ package textadventure;
 
 import textadventure.MapArea.roomConnectionDirection;
 
+import java.util.Objects;
+
 /**
  * Text-based Adventure Game
  *
@@ -58,6 +60,7 @@ class Parser {
             case "q": quit(); break;
             case "quit": quit(); break;
             case "help": help(); break;
+            case "inventory": inventory(); break;
             default: invalidCommand(); break;
         }
     }
@@ -143,6 +146,32 @@ class Parser {
         System.out.println("Directional commands: n/north, s/south, e/east, w/west");
         System.out.println("ne/northeast, nw/northwest, se/southeast, sw/southwest");
         System.out.println("up, down");
-        System.out.println("Other commands: q/quit");
+        System.out.println("Other commands: inventory, q/quit");
+    }
+
+    private void inventory() {
+        System.out.println(" --- Inventory: ---");
+
+        // Show equipped weapon/armor
+        StringBuilder equippedWeaponString = new StringBuilder("");
+        StringBuilder equippedArmorString = new StringBuilder("");
+        if (player.getEquippedWeapon() == null) {
+            equippedWeaponString.append("(none)");
+        } else {
+            equippedWeaponString.append(player.getEquippedWeapon().getName());
+        }
+        if (player.getEquippedArmor() == null) {
+            equippedArmorString.append("(none)");
+        } else {
+            equippedArmorString.append(player.getEquippedArmor().getName());
+        }
+
+        System.out.println("Equipped weapon: " + equippedWeaponString);
+        System.out.println("Equipped armor: " + equippedArmorString);
+        System.out.println("");
+        System.out.println("Items:");
+        for (Item item : player.getInventory()) {
+            System.out.println(item.getName());
+        }
     }
 }
