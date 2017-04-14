@@ -40,17 +40,19 @@ public class Main {
         player.equipWeapon((Weapon) player.getInventory().get(0)); // equip TestWeapon1
         player.equipArmor((Armor) player.getInventory().get(1)); // equip TestArmor1
 
-        player.getCurrentMapRoom().getItemsInRoom().add(new Item("TestRoomItem1", "Test item for take command"));
-
         // Create a parser for handling command input
         Parser parser = new Parser(player);
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Type 'help' to see all of the commands!\n");
+        System.out.println("Welcome!\nType 'help' to see all of the commands!\n" +
+                           "Explore the map and interact with the world using commands\n" +
+                           "such as 'take key' or 'equip sword'\n");
 
-        System.out.println(player.getCurrentMapRoom().getRoomEntryText());
+
         // Create game loop to wait for and capture user input
         while(true) {
+            System.out.println(player.getCurrentMapRoom().getRoomEntryText());
+
             System.out.println("");
             MapRoom.printConnectedMapRooms(player.getCurrentMapRoom());
 

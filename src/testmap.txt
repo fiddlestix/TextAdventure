@@ -1,8 +1,8 @@
-room,Room 1,You have entered Room 1.
-room,Room 2,You have entered Room 2.
-room,Room 3,You have entered Room 3.
-room,Room 4,You have entered Room 4.
-connection,0,1,north
-connection,0,2,northeast
-connection,1,2,east
-connection,2,3,southeast
+room$a bedroom$This room is a sparsely furnished bedroom. It is dusty and filled with cobwebs. There is no sign of anyone living here for a long time.
+room$a hallway$A hallway connects several rooms in the house. The wallpaper is peeling and there is a painting of an old man in fancy clothes hanging askew on the wall.
+room$a room$This room looks to be an old storage room, musty and unused.
+room$a kitchen$You trip over a metal cooking pan and see several large rats scurry away. This room looks to be an old kitchen.
+connection$0$1$north
+connection$1$2$northeast
+connection$1$3$west
+item$0$A strange coin$A dull and unrecognizable coin. It looks ancient, and it feels heavy for it's small size.

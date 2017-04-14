@@ -43,7 +43,6 @@ class Player {
     boolean movePlayerToMapRoom(MapRoom newMapRoom) {
         if (this.currentMapRoom.getConnectedMapRooms().containsValue(newMapRoom)) {
             this.currentMapRoom = newMapRoom;
-            System.out.println(currentMapRoom.getRoomEntryText()); // 'enter' the room, change this later!
             return true;
         } else {
             return false;

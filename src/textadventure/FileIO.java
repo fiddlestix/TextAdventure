@@ -23,10 +23,7 @@ public class FileIO {
             String line = "";
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
-                /* I'll have to do this differently later, because the room descriptions will likely use
-                 * commas (so they can't be used as a delimiter for splitting the string) */
-                String[] tokensInLine = line.split(",");
-
+                String[] tokensInLine = line.split("\\$"); // $ (dollar) symbol used to split parameters for room
                 if (Objects.equals(tokensInLine[0].toLowerCase(), "room")) {
                     MapRoom newRoom = new MapRoom(tokensInLine[1], tokensInLine[2]);
                     newMapArea.addRoomToArea(newRoom);
@@ -35,6 +32,12 @@ public class FileIO {
                     MapRoom secondRoom = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[2]));
                     MapArea.roomConnectionDirection connectionDirection = MapArea.getDirectionFromString(tokensInLine[3]);
                     newMapArea.connectRooms(firstRoom, secondRoom, connectionDirection);
+                } else if (Objects.equals(tokensInLine[0].toLowerCase(), "item")) {
+                    MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
+                    String itemName = tokensInLine[2];
+                    String itemDescription = tokensInLine[3];
+                    Item item = new Item(itemName, itemDescription);
+                    room.getItemsInRoom().add(item);
                 }
             }
 
