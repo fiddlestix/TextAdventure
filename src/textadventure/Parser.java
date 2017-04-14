@@ -1,7 +1,6 @@
 package textadventure;
 
 import textadventure.MapArea.roomConnectionDirection;
-
 import java.util.Objects;
 
 /**
@@ -37,6 +36,7 @@ class Parser {
     // *******************
     void parseCommand(String str) {
         // Split string by spaces to separate commands from params
+        str = str.toLowerCase();
         String[] input = str.split(" ");
 
         switch (input[0]) {
@@ -200,7 +200,7 @@ class Parser {
     private void take(String inputString) {
         boolean itemFound = false;
         for(Item item : player.getCurrentMapRoom().getItemsInRoom()) {
-            if (Objects.equals(inputString, item.getName())) {
+            if (Objects.equals(inputString, item.getName().toLowerCase())) {
                 player.addItemToInventory(item);
                 player.getCurrentMapRoom().getItemsInRoom().remove(item);
                 itemFound = true;
@@ -217,7 +217,7 @@ class Parser {
     private void drop(String inputString) {
         boolean itemFound = false;
         for (Item item : player.getInventory()) {
-            if (Objects.equals(inputString, item.getName())) {
+            if (Objects.equals(inputString, item.getName().toLowerCase())) {
                 player.getCurrentMapRoom().getItemsInRoom().add(item);
                 player.getInventory().remove(item);
                 itemFound = true;
@@ -233,7 +233,7 @@ class Parser {
     private void equip(String inputString) {
         boolean itemFound = false;
         for (Item item : player.getInventory()) {
-            if (Objects.equals(inputString, item.getName())) {
+            if (Objects.equals(inputString, item.getName().toLowerCase())) {
                 itemFound = true;
                 if (item.getClass() == Weapon.class) {
                     System.out.println(player.getEquippedWeapon().getName() + " unequipped.");

@@ -83,6 +83,24 @@ class MapArea {
         return directionString;
     }
 
+    static roomConnectionDirection getDirectionFromString(String string) {
+        roomConnectionDirection direction = null;
+
+        switch (string.toLowerCase()) {
+            case "north": direction = roomConnectionDirection.DIRECTION_NORTH; break;
+            case "south": direction = roomConnectionDirection.DIRECTION_SOUTH; break;
+            case "east": direction = roomConnectionDirection.DIRECTION_EAST; break;
+            case "west": direction = roomConnectionDirection.DIRECTION_WEST; break;
+            case "northeast": direction = roomConnectionDirection.DIRECTION_NORTHEAST; break;
+            case "northwest": direction = roomConnectionDirection.DIRECTION_NORTHWEST; break;
+            case "southeast": direction = roomConnectionDirection.DIRECTION_SOUTHEAST; break;
+            case "southwest": direction = roomConnectionDirection.DIRECTION_SOUTHWEST; break;
+            case "up": direction = roomConnectionDirection.DIRECTION_UP; break;
+            case "down": direction = roomConnectionDirection.DIRECTION_DOWN; break;
+        }
+        return direction;
+    }
+
     roomConnectionDirection getOppositeDirection(roomConnectionDirection direction) {
         roomConnectionDirection oppositeDirection = null;
         switch (direction) {

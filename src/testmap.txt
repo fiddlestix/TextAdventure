@@ -1,0 +1,8 @@
+room,Room 1,You have entered Room 1.
+room,Room 2,You have entered Room 2.
+room,Room 3,You have entered Room 3.
+room,Room 4,You have entered Room 4.
+connection,0,1,north
+connection,0,2,northeast
+connection,1,2,east
+connection,2,3,southeast

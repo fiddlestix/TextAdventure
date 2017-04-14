@@ -50,21 +50,6 @@ class Player {
         }
     }
 
-    // *******************************
-    // ***** Getters and Setters *****
-    // *******************************
-    MapRoom getCurrentMapRoom() {
-        return this.currentMapRoom;
-    }
-
-    ArrayList<Item> getInventory() {
-        return this.inventory;
-    }
-
-    void addItemToInventory(Item newItem) {
-        this.inventory.add(newItem);
-    }
-
     boolean equipWeapon(Weapon weapon) {
         if (this.inventory.contains(weapon)) {
             if (equippedWeapon == null) {
@@ -93,6 +78,21 @@ class Player {
             return true;
         }
         return false;
+    }
+
+    // *******************************
+    // ***** Getters and Setters *****
+    // *******************************
+    MapRoom getCurrentMapRoom() {
+        return this.currentMapRoom;
+    }
+
+    ArrayList<Item> getInventory() {
+        return this.inventory;
+    }
+
+    void addItemToInventory(Item newItem) {
+        this.inventory.add(newItem);
     }
 
     Weapon getEquippedWeapon() {
