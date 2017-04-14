@@ -11,8 +11,8 @@ public class Command {
 
     private static Player player;
 
-    Command(Player player) {
-        this.player = player;
+    static void setPlayer(Player player) {
+        Command.player = player;
     }
 
     static void north() {

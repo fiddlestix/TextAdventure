@@ -33,7 +33,7 @@ class Parser {
     // *******************
     // ***** Methods *****
     // *******************
-    void parseCommand(String str) {
+    static void parseCommand(String str) {
         // Split string by spaces to separate commands from params
         str = str.toLowerCase();
         String[] input = str.split(" ");

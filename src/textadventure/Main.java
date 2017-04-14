@@ -41,9 +41,8 @@ public class Main {
         player.equipArmor((Armor) player.getInventory().get(1)); // equip TestArmor1
 
         // Create a parser for handling command input
-        Parser parser = new Parser();
         Scanner scanner = new Scanner(System.in);
-        Command command = new Command(player);
+        Command.setPlayer(player);
 
         System.out.println("Welcome!\nType 'help' to see all of the commands!\n" +
                            "Explore the map and interact with the world using commands\n" +
@@ -63,7 +62,7 @@ public class Main {
             }
             System.out.println("");
             // Parse and execute the command entered by the user
-            parser.parseCommand(scanner.nextLine());
+            Parser.parseCommand(scanner.nextLine());
         }
     }
 }
