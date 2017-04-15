@@ -35,8 +35,6 @@ public class Main {
         player.addItemToInventory(new Weapon("TestWeapon2", "Second test weapon.", 10, 15, 0.9));
         player.addItemToInventory(new Armor("TestArmor1", "First test armor.", 3, 5));
         player.addItemToInventory(new Armor("TestArmor2", "Second test armor.", 5, 9));
-        player.addItemToInventory(new Item("TestItem1", "First test item."));
-        player.addItemToInventory(new Item("TestItem2", "Second test item."));
         player.equipWeapon((Weapon) player.getInventory().get(0)); // equip TestWeapon1
         player.equipArmor((Armor) player.getInventory().get(1)); // equip TestArmor1
 

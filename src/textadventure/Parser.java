@@ -2,6 +2,9 @@ package textadventure;
 
 import textadventure.Command;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * Text-based Adventure Game
  *
@@ -36,52 +39,114 @@ class Parser {
     static void parseCommand(String str) {
         // Split string by spaces to separate commands from params
         str = str.toLowerCase();
-        String[] input = str.split(" ");
+        String[] tokens = str.split(" ");
 
-        switch (input[0]) {
-            case "n": Command.north(); break;
-            case "north": Command.north(); break;
-            case "s": Command.south(); break;
-            case "south": Command.south(); break;
-            case "e": Command.east(); break;
-            case "east": Command.east(); break;
-            case "w": Command.west(); break;
-            case "west": Command.west(); break;
-            case "nw": Command.northwest(); break;
-            case "northwest": Command.northwest(); break;
-            case "ne": Command.northeast(); break;
-            case "northeast": Command.northeast(); break;
-            case "sw": Command.southwest(); break;
-            case "southwest": Command.southwest(); break;
-            case "se": Command.southeast(); break;
-            case "southeast": Command.southeast(); break;
-            case "u": Command.up(); break;
-            case "up": Command.up(); break;
-            case "d": Command.down(); break;
-            case "down": Command.down(); break;
-            case "q": Command.quit(); break;
-            case "quit": Command.quit(); break;
-            case "help": Command.help(); break;
-            case "inventory": Command.inventory(); break;
-            case "take":
-                if (input.length  != 2) {
-                    System.out.println("Missing or incorrect parameters. Try again.");
+        if (tokens.length == 1) {
+            switch (tokens[0]) {
+                case "n":
+                    Command.north();
                     break;
-                }
-                Command.take(input[1]); break;
-            case "drop":
-                if (input.length  != 2) {
-                    System.out.println("Missing or incorrect parameters. Try again.");
+                case "north":
+                    Command.north();
                     break;
-                }
-                Command.drop(input[1]); break;
-            case "equip":
-                if (input.length  != 2) {
-                    System.out.println("Missing or incorrect parameters. Try again.");
+                case "s":
+                    Command.south();
                     break;
-                }
-                Command.equip(input[1]); break;
-            default: Command.invalidCommand(); break;
+                case "south":
+                    Command.south();
+                    break;
+                case "e":
+                    Command.east();
+                    break;
+                case "east":
+                    Command.east();
+                    break;
+                case "w":
+                    Command.west();
+                    break;
+                case "west":
+                    Command.west();
+                    break;
+                case "nw":
+                    Command.northwest();
+                    break;
+                case "northwest":
+                    Command.northwest();
+                    break;
+                case "ne":
+                    Command.northeast();
+                    break;
+                case "northeast":
+                    Command.northeast();
+                    break;
+                case "sw":
+                    Command.southwest();
+                    break;
+                case "southwest":
+                    Command.southwest();
+                    break;
+                case "se":
+                    Command.southeast();
+                    break;
+                case "southeast":
+                    Command.southeast();
+                    break;
+                case "u":
+                    Command.up();
+                    break;
+                case "up":
+                    Command.up();
+                    break;
+                case "d":
+                    Command.down();
+                    break;
+                case "down":
+                    Command.down();
+                    break;
+                case "q":
+                    Command.quit();
+                    break;
+                case "quit":
+                    Command.quit();
+                    break;
+                case "help":
+                    Command.help();
+                    break;
+                case "inventory":
+                    Command.inventory();
+                    break;
+                default:
+                    Command.invalidCommand();
+                    break;
+
+            }
+        } else if (tokens.length > 1) {
+            switch (tokens[0]) {
+                case "take":
+                    if (tokens.length == 2) {
+                        Command.take(tokens[1]);
+                    }  else {
+                        System.out.println("Missing or incorrect parameters. Try again.");
+                    }
+                    break;
+                case "drop":
+                    if (tokens.length == 2) {
+                        Command.drop(tokens[1]);
+                    } else {
+                        System.out.println("Missing or incorrect parameters. Try again.");
+                    }
+                    break;
+                case "equip":
+                    if (tokens.length == 2) {
+                        Command.equip(tokens[1]);
+                    } else {
+                        System.out.println("Missing or incorrect parameters. Try again.");
+                    }
+                    break;
+                default:
+                    Command.invalidCommand();
+                    break;
+            }
         }
     }
 }

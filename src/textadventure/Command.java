@@ -126,11 +126,12 @@ public class Command {
     static void take(String inputString) {
         boolean itemFound = false;
         for(Item item : player.getCurrentMapRoom().getItemsInRoom()) {
-            if (Objects.equals(inputString, item.getName().toLowerCase())) {
+            if (Objects.equals(item.getIdentifier().toLowerCase(), inputString.toLowerCase())) {
                 player.addItemToInventory(item);
                 player.getCurrentMapRoom().getItemsInRoom().remove(item);
                 itemFound = true;
-                System.out.println(item.getName() + " added to inventory."); // delete this notifaction later
+
+                System.out.println(item.getIdentifier() + " added to inventory."); // delete this notification later
                 break;
             }
         }
@@ -143,11 +144,11 @@ public class Command {
     static void drop(String inputString) {
         boolean itemFound = false;
         for (Item item : player.getInventory()) {
-            if (Objects.equals(inputString, item.getName().toLowerCase())) {
+            if (Objects.equals(inputString.toLowerCase(), item.getIdentifier().toLowerCase())) {
                 player.getCurrentMapRoom().getItemsInRoom().add(item);
                 player.getInventory().remove(item);
                 itemFound = true;
-                System.out.println(item.getName() + " removed from inventory and added to current room.");
+                System.out.println(item.getIdentifier() + " removed from inventory and added to current room.");
                 break;
             }
         }

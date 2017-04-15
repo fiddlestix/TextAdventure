@@ -36,7 +36,8 @@ public class FileIO {
                     MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
                     String itemName = tokensInLine[2];
                     String itemDescription = tokensInLine[3];
-                    Item item = new Item(itemName, itemDescription);
+                    String itemIdentifier = tokensInLine[4];
+                    Item item = new Item(itemName, itemDescription, itemIdentifier);
                     room.getItemsInRoom().add(item);
                 }
             }

@@ -21,6 +21,7 @@ public class Item {
     // ******************
     private String name;
     private String description;
+    private String identifier;
 
     // ************************
     // ***** Constructors *****
@@ -28,11 +29,13 @@ public class Item {
     Item() {
         this.name = "Default item name";
         this.description = "Default item description";
+        this.identifier = "default";
     }
 
-    Item(String newName, String newDescription) {
+    Item(String newName, String newDescription, String newIdentifier) {
         this.name = newName;
         this.description = newDescription;
+        this.identifier = newIdentifier;
     }
 
     // *******************************
@@ -52,5 +55,13 @@ public class Item {
 
     void setDescription(String newDescription) {
         this.description = newDescription;
+    }
+
+    String getIdentifier() {
+        return this.identifier;
+    }
+
+    void setIdentifier(String newIdentifier) {
+        this.identifier = newIdentifier;
     }
 }
