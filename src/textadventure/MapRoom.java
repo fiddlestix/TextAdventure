@@ -42,7 +42,7 @@ class MapRoom {
         this.roomEntryText = newRoomEntryText;
         this.connectedMapRooms = new EnumMap<>(roomConnectionDirection.class);
         this.directionIsLocked = new EnumMap<>(roomConnectionDirection.class);
-        this.directionLockMechanism = new EnumMap(roomConnectionDirection.class);
+        this.directionLockMechanism = new EnumMap<>(roomConnectionDirection.class);
         setConnectedMapRoomsToNull();
         setDirectionLocksToNull();
         itemsInRoom = new ArrayList<>();
@@ -52,19 +52,26 @@ class MapRoom {
     // ***** Methods *****
     // *******************
     static void printConnectedMapRooms(MapRoom room) {
+        /*
+          Prints a list to the console, of connected rooms to given room
+         */
         StringBuffer stringBuffer = new StringBuffer("");
         int count = 0;
         int stopCount = 0;
 
+        // Loop through connected map rooms to count them
         for (roomConnectionDirection direction : roomConnectionDirection.values()) {
             if (room.getConnectedMapRooms().get(direction) != null) {
                 stopCount++;
             }
         }
 
+        // Loop through connected map rooms to output in a sentence-style format.
         for (roomConnectionDirection direction : roomConnectionDirection.values()) {
             if (room.getConnectedMapRooms().get(direction) != null) {
+                // If this is the first connected room, start the sentence
                 if (count == 0) {
+                    // Record connected room and direction
                     stringBuffer.append("This room is connected to " + room.getConnectedMapRooms().get(direction).getRoomName() +
                             " to the " + MapArea.convertDirectionToString(direction));
                     count++;
@@ -83,7 +90,13 @@ class MapRoom {
     }
 
     boolean addLockToDirection(roomConnectionDirection direction, DirectionLock lock) {
+        /**
+         * Adds a DirectionLock to a room's travel table. Returns true if successful and
+         * false if unsuccessful.
+         */
+        // Check if that direction is already locked
         if (!this.isLocked(direction)) {
+            // Set that direction to locked, add DirectionLock object to travel table
             this.directionIsLocked.put(direction, true);
             this.directionLockMechanism.put(direction, lock);
             return true;
@@ -91,6 +104,9 @@ class MapRoom {
     }
 
     boolean removeLockFromDirection(roomConnectionDirection direction) {
+        /**
+         *
+         */
         if (this.directionIsLocked.get(direction)) {
             this.directionIsLocked.replace(direction, false);
             this.directionLockMechanism.remove(direction);

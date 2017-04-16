@@ -17,65 +17,81 @@ public class Command {
 
     static void north() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTH) != null) {
-            if (player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_NORTH)) {
-                thatDirectionIsLocked();
-            } else {
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_NORTH)) {
                 player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTH));
-            }
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
     static void south() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_SOUTH) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_SOUTH));
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_SOUTH)) {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_SOUTH));
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
     static void east() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_EAST) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_EAST));
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_EAST)) {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_EAST));
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
     static void west() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_WEST) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_WEST));
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_WEST)) {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_WEST));
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
     static void northwest() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTHWEST) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTHWEST));
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_NORTHWEST)) {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_NORTHWEST));
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
     static void southeast() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_SOUTHEAST) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_SOUTHEAST));
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_SOUTHEAST)) {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_SOUTHEAST));
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
     static void northeast() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTHEAST) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTHEAST));
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_NORTHEAST)) {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_NORTHEAST));
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
     static void southwest() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_SOUTHWEST) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_SOUTHWEST));
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_SOUTHWEST)) {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_SOUTHWEST));
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
     static void up() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_UP) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_UP));
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_UP)) {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_UP));
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
     static void down() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_DOWN) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_DOWN));
+            if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_DOWN)) {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_DOWN));
+            } else thatDirectionIsLocked();
         } else youCannotGoThatWay();
     }
 
@@ -101,7 +117,7 @@ public class Command {
         System.out.println("Directional commands: n/north, s/south, e/east, w/west");
         System.out.println("ne/northeast, nw/northwest, se/southeast, sw/southwest");
         System.out.println("up, down");
-        System.out.println("Other commands: inventory, take, drop, equip");
+        System.out.println("Other commands: inventory, take, drop, equip, turn, pull");
         System.out.println("                q/quit");
     }
 
@@ -192,19 +208,41 @@ public class Command {
     static void turn(String inputString) {
         if (Objects.equals(inputString.toLowerCase(), "wheel")) {
             for (roomConnectionDirection direction : roomConnectionDirection.values()) {
-                if (player.getCurrentMapRoom().isLocked(direction) && player.getCurrentMapRoom().getDirectionLock(direction).getClass() == Wheel.class) {
-                    Wheel wheel = (Wheel) player.getCurrentMapRoom().getDirectionLock(direction);
-                    if (wheel.checkIsLocked()) {
-                        wheel.turn();
-                        System.out.println(player.getCurrentMapRoom().unlock(direction));
-                        System.out.println("You turn the wheel until it stops.");
+                if (player.getCurrentMapRoom().getDirectionLock(direction) != null) {
+                    if (player.getCurrentMapRoom().isLocked(direction) && player.getCurrentMapRoom().getDirectionLock(direction).getClass() == Wheel.class) {
+                        Wheel wheel = (Wheel) player.getCurrentMapRoom().getDirectionLock(direction);
+                        if (wheel.checkIsLocked()) {
+                            wheel.turn();
+                            player.getCurrentMapRoom().unlock(direction);
+                            System.out.println("You turn the wheel until it stops.");
+                        } else {
+                            System.out.println("The wheel has already been turned all the way.");
+                        }
                     } else {
-                        System.out.println("The wheel has already been turned all the way.");
+                        System.out.println("There is no wheel to turn in this room.");
                     }
-                } else {
-                    System.out.println("There is no wheel in this room to turn.");
                 }
-                break;
+            }
+        }
+    }
+
+    static void pull(String inputString) {
+        if (Objects.equals(inputString.toLowerCase(), "lever")) {
+            for (roomConnectionDirection direction : roomConnectionDirection.values()) {
+                if (player.getCurrentMapRoom().getDirectionLock(direction) != null) {
+                    if (player.getCurrentMapRoom().isLocked(direction) && player.getCurrentMapRoom().getDirectionLock(direction).getClass() == Lever.class) {
+                        Lever lever = (Lever) player.getCurrentMapRoom().getDirectionLock(direction);
+                        if (lever.checkIsLocked()) {
+                            lever.pull();
+                            player.getCurrentMapRoom().unlock(direction);
+                            System.out.println("You pull the lever.");
+                        } else {
+                            System.out.println("The lever has already been pulled, and it is stuck.");
+                        }
+                    } else {
+                        System.out.println("There is no lever in this room to pull.");
+                    }
+                }
             }
         }
     }
