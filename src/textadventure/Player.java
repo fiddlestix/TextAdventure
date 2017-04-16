@@ -1,7 +1,6 @@
 package textadventure;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Text-based Adventure Game
@@ -32,7 +31,7 @@ class Player {
     // ************************
     Player(MapRoom startingMapRoom) {
         currentMapRoom = startingMapRoom;
-        inventory = new ArrayList<Item>();
+        inventory = new ArrayList<>();
         equippedWeapon = null;
         equippedArmor = null;
     }

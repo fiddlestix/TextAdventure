@@ -1,9 +1,21 @@
 package textadventure;
 
 /**
- * Created by jeffs_000 on 4/10/2017.
+ * Text-based Adventure Game
+ *
+ * A project for CMSC 495 7982
+ * Trends and Projects in Computer Science
+ * University of Maryland University College
+ *
+ * Jeff Schouw
+ * Mansukh Saini
+ * Lionel Rockymore
+ *
+ * Armor.java
+ * Subclass of Item class, used to mitigate damage in combat.
  */
-public class Armor extends Item {
+
+class Armor extends Item {
     // ******************
     // ***** Fields *****
     // ******************

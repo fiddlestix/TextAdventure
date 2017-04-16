@@ -1,10 +1,21 @@
 package textadventure;
 
 /**
- * Created by jeffs_000 on 4/16/2017.
+ * Text-based Adventure Game
+ *
+ * A project for CMSC 495 7982
+ * Trends and Projects in Computer Science
+ * University of Maryland University College
+ *
+ * Jeff Schouw
+ * Mansukh Saini
+ * Lionel Rockymore
+ *
+ * DirectionLock.java
+ * A class to lock room connections and block access to rooms.
  */
 
-public class DirectionLock {
+class DirectionLock {
     private Boolean isLocked;
     private String name;
     private String description;
@@ -17,42 +28,42 @@ public class DirectionLock {
         this.isLocked = false;
     }
 
-    public DirectionLock() {
+    DirectionLock() {
         this.name = "Default lock name";
         this.description = "Default lock description";
         this.identifier = "lock";
         this.isLocked = false;
     }
 
-    public Boolean checkIsLocked() {
+    Boolean checkIsLocked() {
         return isLocked;
     }
 
-    public void setIsLocked(Boolean locked) {
+    void setIsLocked(Boolean locked) {
         isLocked = locked;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description;
     }
 
-    public String getIdentifier() {
+    String getIdentifier() {
         return identifier;
     }
 
-    public void setIdentifier(String identifier) {
+    void setIdentifier(String identifier) {
         this.identifier = identifier;
     }
 }

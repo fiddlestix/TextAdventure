@@ -15,7 +15,7 @@ package textadventure;
  * A superclass for items and objects.
  */
 
-public class Item {
+class Item {
     // ******************
     // ***** Fields *****
     // ******************

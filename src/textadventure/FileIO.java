@@ -6,21 +6,32 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * Created by jeffs_000 on 4/13/2017.
+ * Text-based Adventure Game
+ *
+ * A project for CMSC 495 7982
+ * Trends and Projects in Computer Science
+ * University of Maryland University College
+ *
+ * Jeff Schouw
+ * Mansukh Saini
+ * Lionel Rockymore
+ *
+ * FileIO.java
+ * A class that groups all functionality for file input/output.
  */
 
-public class FileIO {
+class FileIO {
 
     // *******************
     // ***** Methods *****
     // *******************
 
-    static MapArea loadMapFromFile(String filePath) {
+    static MapArea loadMapFromFile() {
         MapArea newMapArea = new MapArea();
-        File file = new File(filePath);
+        File file = new File("src/testmap.txt");
         try {
             Scanner scanner = new Scanner(file);
-            String line = "";
+            String line;
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
                 String[] tokensInLine = line.split("\\$"); // $ (dollar) symbol used to split parameters for room

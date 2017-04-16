@@ -1,10 +1,23 @@
 package textadventure;
 
 /**
- * Created by jeffs_000 on 4/16/2017.
+ * Text-based Adventure Game
+ *
+ * A project for CMSC 495 7982
+ * Trends and Projects in Computer Science
+ * University of Maryland University College
+ *
+ * Jeff Schouw
+ * Mansukh Saini
+ * Lionel Rockymore
+ *
+ * Wheel.java
+ * A class that represents a wheel object in the world.
+ * A wheel is a DirectionLock, able to lock access to a room
+ * until the user turns the wheel.
  */
 
-public class Wheel extends DirectionLock {
+class Wheel extends DirectionLock {
 
     Wheel() {
         this.setName("A wheel");

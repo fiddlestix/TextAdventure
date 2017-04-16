@@ -1,10 +1,23 @@
 package textadventure;
 
 /**
- * Created by jeffs_000 on 4/16/2017.
+ * Text-based Adventure Game
+ *
+ * A project for CMSC 495 7982
+ * Trends and Projects in Computer Science
+ * University of Maryland University College
+ *
+ * Jeff Schouw
+ * Mansukh Saini
+ * Lionel Rockymore
+ *
+ * Lever.java
+ * A class that represents a lever object in the world.
+ * A lever is a DirectionLock, able to lock access to a room
+ * until the user pulls the lever.
  */
 
-public class Lever extends DirectionLock {
+class Lever extends DirectionLock {
 
     Lever() {
         this.setName("A lever");

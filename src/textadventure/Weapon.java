@@ -15,7 +15,7 @@ package textadventure;
  * An Item that can be equipped and used to damage enemies.
  */
 
-public class Weapon extends Item {
+class Weapon extends Item {
     // ******************
     // ***** Fields *****
     // ******************

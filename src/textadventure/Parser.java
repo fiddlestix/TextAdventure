@@ -1,10 +1,5 @@
 package textadventure;
 
-import textadventure.Command;
-
-import java.util.Arrays;
-import java.util.Objects;
-
 /**
  * Text-based Adventure Game
  *

@@ -18,14 +18,14 @@ import textadventure.MapArea.roomConnectionDirection;
  * An executable class, contains main() method to start application.
  */
 
-public class Main {
+class Main {
 
     public static void main(String[] args) {
 
         // Just testing some early map stuff here
 
         // load map from file
-        MapArea mapArea = FileIO.loadMapFromFile("src/testmap.txt");
+        MapArea mapArea = FileIO.loadMapFromFile();
 
         // Create a new player starting in room 1
         Player player = new Player(mapArea.getRoomsInArea().get(0));
@@ -50,13 +50,13 @@ public class Main {
         // Display welcome message
         System.out.println("Welcome!\nType 'help' to see all of the commands!\n" +
                            "Explore the map and interact with the world using commands\n" +
-                           "such as 'take key' or 'push lever'\n");
+                           "such as 'take key' or 'pull lever'\n");
 
         // Create game loop to wait for and capture user input
         while(true) {
 
             // Display text upon entering a room
-            System.out.println("");
+            System.out.println("\n----------------------------");
             System.out.println(player.getCurrentMapRoom().getRoomEntryText());
 
             // Display connected rooms to player's current room

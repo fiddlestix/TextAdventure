@@ -90,9 +90,9 @@ class MapRoom {
     }
 
     boolean addLockToDirection(roomConnectionDirection direction, DirectionLock lock) {
-        /**
-         * Adds a DirectionLock to a room's travel table. Returns true if successful and
-         * false if unsuccessful.
+        /*
+          Adds a DirectionLock to a room's travel table. Returns true if successful and
+          false if unsuccessful.
          */
         // Check if that direction is already locked
         if (!this.isLocked(direction)) {
@@ -104,9 +104,6 @@ class MapRoom {
     }
 
     boolean removeLockFromDirection(roomConnectionDirection direction) {
-        /**
-         *
-         */
         if (this.directionIsLocked.get(direction)) {
             this.directionIsLocked.replace(direction, false);
             this.directionLockMechanism.remove(direction);
@@ -115,9 +112,7 @@ class MapRoom {
     }
 
     boolean isLocked(roomConnectionDirection direction) {
-        if (this.directionIsLocked.get(direction) != null && this.directionIsLocked.get(direction)) {
-            return true;
-        } else return false;
+        return this.directionIsLocked.get(direction) != null && this.directionIsLocked.get(direction);
     }
 
     boolean unlock(roomConnectionDirection direction) {
@@ -141,7 +136,7 @@ class MapRoom {
         return this.roomEntryText;
     }
 
-    String getRoomName() {
+    private String getRoomName() {
         return this.roomName;
     }
 

@@ -101,7 +101,7 @@ class MapArea {
         return direction;
     }
 
-    roomConnectionDirection getOppositeDirection(roomConnectionDirection direction) {
+    private roomConnectionDirection getOppositeDirection(roomConnectionDirection direction) {
         roomConnectionDirection oppositeDirection = null;
         switch (direction) {
             case DIRECTION_NORTH: oppositeDirection = roomConnectionDirection.DIRECTION_SOUTH; break;
