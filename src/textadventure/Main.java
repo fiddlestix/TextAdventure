@@ -38,6 +38,8 @@ public class Main {
         player.equipWeapon((Weapon) player.getInventory().get(0)); // equip TestWeapon1
         player.equipArmor((Armor) player.getInventory().get(1)); // equip TestArmor1
 
+        player.getCurrentMapRoom().addLockToDirection(roomConnectionDirection.DIRECTION_NORTH, new Wheel());
+
         // Create a parser for handling command input
         Scanner scanner = new Scanner(System.in);
         Command.setPlayer(player);

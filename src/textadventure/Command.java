@@ -17,7 +17,11 @@ public class Command {
 
     static void north() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTH) != null) {
-            player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTH));
+            if (player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_NORTH)) {
+                thatDirectionIsLocked();
+            } else {
+                player.movePlayerToMapRoom(player.getCurrentMapRoom().getConnectedMapRooms().get(MapArea.roomConnectionDirection.DIRECTION_NORTH));
+            }
         } else youCannotGoThatWay();
     }
 
@@ -77,6 +81,10 @@ public class Command {
 
     private static void youCannotGoThatWay() {
         System.out.println("You cannot go in that direction.");
+    }
+
+    private static void thatDirectionIsLocked() {
+        System.out.println("You cannot go in that direction, the way is locked.");
     }
 
     static void quit() {
@@ -178,6 +186,26 @@ public class Command {
         }
         if (!itemFound) {
             System.out.println("No item called " + inputString + " found in player's inventory.");
+        }
+    }
+
+    static void turn(String inputString) {
+        if (Objects.equals(inputString.toLowerCase(), "wheel")) {
+            for (roomConnectionDirection direction : roomConnectionDirection.values()) {
+                if (player.getCurrentMapRoom().isLocked(direction) && player.getCurrentMapRoom().getDirectionLock(direction).getClass() == Wheel.class) {
+                    Wheel wheel = (Wheel) player.getCurrentMapRoom().getDirectionLock(direction);
+                    if (wheel.checkIsLocked()) {
+                        wheel.turn();
+                        System.out.println(player.getCurrentMapRoom().unlock(direction));
+                        System.out.println("You turn the wheel until it stops.");
+                    } else {
+                        System.out.println("The wheel has already been turned all the way.");
+                    }
+                } else {
+                    System.out.println("There is no wheel in this room to turn.");
+                }
+                break;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-room$a bedroom$This room is a sparsely furnished bedroom. It is dusty and filled with cobwebs. There is no sign of anyone living here for a long time.
+room$a room with a metal door$This room is sparsely furnished and looks like a prison cell. The door is made of thick metal with a wheel in the middle, like something you'd see on a ship or submarine.
 room$a hallway$A hallway connects several rooms in the house. The wallpaper is peeling and there is a painting of an old man in fancy clothes hanging askew on the wall.
 room$a room$This room looks to be an old storage room, musty and unused.
 room$a kitchen$You trip over a metal cooking pan and see several large rats scurry away. This room looks to be an old kitchen.

@@ -28,27 +28,23 @@ class MapRoom {
     private String roomName;
     private String roomEntryText;
     private EnumMap<roomConnectionDirection, MapRoom> connectedMapRooms;
+    private EnumMap<roomConnectionDirection, Boolean> directionIsLocked;
+    private EnumMap<roomConnectionDirection, DirectionLock> directionLockMechanism;
     private ArrayList<Item> itemsInRoom;
 
     // ************************
     // ***** Constructors *****
     // ************************
-    MapRoom() {
-        this.roomIndex = roomIndexCounter++;
-        this.roomName = "Default room name";
-        this.roomEntryText = "Default text on entering a room.";
-        this.connectedMapRooms = new EnumMap<>(roomConnectionDirection.class);
-        setConnectedMapRoomsToNull();
-        itemsInRoom = new ArrayList<>();
-    }
-
     MapRoom(String newRoomName, String newRoomEntryText) {
         this.roomIndex = roomIndexCounter;
         roomIndexCounter++;
         this.roomName = newRoomName;
         this.roomEntryText = newRoomEntryText;
         this.connectedMapRooms = new EnumMap<>(roomConnectionDirection.class);
+        this.directionIsLocked = new EnumMap<>(roomConnectionDirection.class);
+        this.directionLockMechanism = new EnumMap(roomConnectionDirection.class);
         setConnectedMapRoomsToNull();
+        setDirectionLocksToNull();
         itemsInRoom = new ArrayList<>();
     }
 
@@ -86,6 +82,42 @@ class MapRoom {
         System.out.println(stringBuffer);
     }
 
+    boolean addLockToDirection(roomConnectionDirection direction, DirectionLock lock) {
+        if (!this.isLocked(direction)) {
+            this.directionIsLocked.put(direction, true);
+            this.directionLockMechanism.put(direction, lock);
+            return true;
+        } else return false;
+    }
+
+    boolean removeLockFromDirection(roomConnectionDirection direction) {
+        if (this.directionIsLocked.get(direction)) {
+            this.directionIsLocked.replace(direction, false);
+            this.directionLockMechanism.remove(direction);
+            return true;
+        } else return false;
+    }
+
+    boolean isLocked(roomConnectionDirection direction) {
+        if (this.directionIsLocked.get(direction) != null && this.directionIsLocked.get(direction)) {
+            return true;
+        } else return false;
+    }
+
+    boolean unlock(roomConnectionDirection direction) {
+        if (this.isLocked(direction)) {
+            this.directionIsLocked.replace(direction, false);
+            return true;
+        } else return false;
+    }
+
+    DirectionLock getDirectionLock(roomConnectionDirection direction) {
+        if (this.isLocked(direction)) {
+            return this.directionLockMechanism.get(direction);
+        }
+        return null;
+    }
+
     // *******************************
     // ***** Getters and Setters *****
     // *******************************
@@ -108,6 +140,15 @@ class MapRoom {
     private void setConnectedMapRoomsToNull() {
         for (roomConnectionDirection direction : roomConnectionDirection.values()) {
             this.connectedMapRooms.put(direction, null);
+        }
+    }
+
+    private void setDirectionLocksToNull() {
+        for (roomConnectionDirection direction : directionIsLocked.keySet()) {
+            directionIsLocked.put(direction, null);
+        }
+        for (roomConnectionDirection direction : directionLockMechanism.keySet()) {
+            directionLockMechanism.put(direction, null);
         }
     }
 
