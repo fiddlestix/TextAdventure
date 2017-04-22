@@ -79,11 +79,13 @@ class Main {
             System.out.println("");
 
             // Display items in the room
-            System.out.println("\nItems in room:");
-            for (Item item : player.getCurrentMapRoom().getItemsInRoom()) {
-                System.out.println(item.getName());
+            if (!player.getCurrentMapRoom().getItemsInRoom().isEmpty()) {
+                System.out.println("\nItems in room:");
+                for (Item item : player.getCurrentMapRoom().getItemsInRoom()) {
+                    System.out.println(item.getName());
+                }
+                System.out.println("");
             }
-            System.out.println("");
             // Parse and execute the command entered by the user
             System.out.println("----------------------------");
             Parser.parseCommand(scanner.nextLine());
