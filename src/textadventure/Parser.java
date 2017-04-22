@@ -19,14 +19,10 @@ class Parser {
     // ******************
     // ***** Fields *****
     // ******************
-    //private static Player player;
 
     // ************************
     // ***** Constructors *****
     // ************************
-    //Parser(Player player) {
-    //    this.player = player;
-    //}
 
     // *******************
     // ***** Methods *****

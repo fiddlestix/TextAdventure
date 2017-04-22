@@ -2,6 +2,8 @@ package textadventure;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.Objects;
+
 import textadventure.MapArea.roomConnectionDirection;
 
 /**
@@ -72,16 +74,35 @@ class MapRoom {
                 // If this is the first connected room, start the sentence
                 if (count == 0) {
                     // Record connected room and direction
-                    stringBuffer.append("This room is connected to " + room.getConnectedMapRooms().get(direction).getRoomName() +
-                            " to the " + MapArea.convertDirectionToString(direction));
+                    if (direction == roomConnectionDirection.DIRECTION_UP) {
+                        stringBuffer.append("This room is connected to " + room.getConnectedMapRooms().get(direction).getRoomName() + " upstairs.");
+                    } else if (direction == roomConnectionDirection.DIRECTION_DOWN) {
+                        stringBuffer.append("This room is connected to " + room.getConnectedMapRooms().get(direction).getRoomName() + " downstairs.");
+                    } else {
+                        stringBuffer.append("This room is connected to " + room.getConnectedMapRooms().get(direction).getRoomName() +
+                                " to the " + MapArea.convertDirectionToString(direction));
+
+                    }
                     count++;
                 } else if (count > 0 && count < stopCount - 1) {
-                    stringBuffer.append("\n" + room.getConnectedMapRooms().get(direction).getRoomName() +
-                                        " to the " + MapArea.convertDirectionToString(direction) + ",");
+                    if (direction == roomConnectionDirection.DIRECTION_UP) {
+                        stringBuffer.append("\n" + room.getConnectedMapRooms().get(direction).getRoomName() + " upstairs,");
+                    } else if (direction == roomConnectionDirection.DIRECTION_DOWN) {
+                        stringBuffer.append("\n" + room.getConnectedMapRooms().get(direction).getRoomName() + " downstairs,");
+                    } else {
+                        stringBuffer.append("\n" + room.getConnectedMapRooms().get(direction).getRoomName() +
+                                " to the " + MapArea.convertDirectionToString(direction) + ",");
+                    }
                     count++;
                 } else if (count == stopCount - 1){
-                    stringBuffer.append("\nand " + room.getConnectedMapRooms().get(direction).getRoomName() +
-                            " to the " + MapArea.convertDirectionToString(direction));
+                    if (direction == roomConnectionDirection.DIRECTION_UP) {
+                        stringBuffer.append("\nand " + room.getConnectedMapRooms().get(direction).getRoomName() + " upstairs");
+                    } else if (direction == roomConnectionDirection.DIRECTION_DOWN) {
+                        stringBuffer.append("\nand " + room.getConnectedMapRooms().get(direction).getRoomName() + " downstairs");
+                    } else {
+                        stringBuffer.append("\nand " + room.getConnectedMapRooms().get(direction).getRoomName() +
+                                " to the " + MapArea.convertDirectionToString(direction));
+                    }
                 }
             }
         }
