@@ -23,8 +23,6 @@ class Player {
     // ******************
     private MapRoom currentMapRoom;
     private ArrayList<Item> inventory;
-    private Weapon equippedWeapon;
-    private Armor equippedArmor;
 
     // ************************
     // ***** Constructors *****
@@ -32,8 +30,6 @@ class Player {
     Player(MapRoom startingMapRoom) {
         currentMapRoom = startingMapRoom;
         inventory = new ArrayList<>();
-        equippedWeapon = null;
-        equippedArmor = null;
     }
 
     // *******************
@@ -46,36 +42,6 @@ class Player {
         } else {
             return false;
         }
-    }
-
-    boolean equipWeapon(Weapon weapon) {
-        if (this.inventory.contains(weapon)) {
-            if (equippedWeapon == null) {
-                this.equippedWeapon = weapon;
-                this.getInventory().remove(weapon);
-            } else {
-                this.getInventory().add(equippedWeapon);
-                this.equippedWeapon = weapon;
-                this.getInventory().remove(weapon);
-            }
-            return true;
-        }
-        return false;
-    }
-
-    boolean equipArmor(Armor armor) {
-        if (this.inventory.contains(armor)) {
-            if (equippedArmor == null) {
-                this.equippedArmor = armor;
-                this.getInventory().remove(armor);
-            } else {
-                this.getInventory().add(equippedArmor);
-                this.equippedArmor = armor;
-                this.getInventory().remove(armor);
-            }
-            return true;
-        }
-        return false;
     }
 
     // *******************************
@@ -91,13 +57,5 @@ class Player {
 
     void addItemToInventory(Item newItem) {
         this.inventory.add(newItem);
-    }
-
-    Weapon getEquippedWeapon() {
-        return this.equippedWeapon;
-    }
-
-    Armor getEquippedArmor() {
-        return this.equippedArmor;
     }
 }

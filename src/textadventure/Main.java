@@ -30,14 +30,6 @@ class Main {
         // Create a new player starting in room 1
         Player player = new Player(mapArea.getRoomsInArea().get(0));
 
-        // Add some weapons and armor for testing
-        player.addItemToInventory(new Weapon("TestWeapon1", "First test weapon.", 5, 10, 0.5));
-        player.addItemToInventory(new Weapon("TestWeapon2", "Second test weapon.", 10, 15, 0.9));
-        player.addItemToInventory(new Armor("TestArmor1", "First test armor.", 3, 5));
-        player.addItemToInventory(new Armor("TestArmor2", "Second test armor.", 5, 9));
-        player.equipWeapon((Weapon) player.getInventory().get(0)); // equip TestWeapon1
-        player.equipArmor((Armor) player.getInventory().get(1)); // equip TestArmor1
-
         // Add lock to first room's north connection to room 2
         player.getCurrentMapRoom().addLockToDirection(roomConnectionDirection.DIRECTION_NORTH, new Wheel());
         // Add lock to second room's northeast connection to room 3

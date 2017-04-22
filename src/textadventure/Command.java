@@ -134,25 +134,6 @@ class Command {
 
     static void inventory() {
         System.out.println(" --- Inventory: ---");
-
-        // Show equipped weapon/armor
-        StringBuilder equippedWeaponString = new StringBuilder("");
-        StringBuilder equippedArmorString = new StringBuilder("");
-        if (player.getEquippedWeapon() == null) {
-            equippedWeaponString.append("(none)");
-        } else {
-            equippedWeaponString.append(player.getEquippedWeapon().getName());
-        }
-        if (player.getEquippedArmor() == null) {
-            equippedArmorString.append("(none)");
-        } else {
-            equippedArmorString.append(player.getEquippedArmor().getName());
-        }
-
-        System.out.println("Equipped weapon: " + equippedWeaponString);
-        System.out.println("Equipped armor: " + equippedArmorString);
-        System.out.println("");
-        System.out.println("Items:");
         for (Item item : player.getInventory()) {
             System.out.println(item.getName());
         }
@@ -184,30 +165,6 @@ class Command {
                 player.getInventory().remove(item);
                 itemFound = true;
                 System.out.println(item.getIdentifier() + " removed from inventory and added to current room.");
-                break;
-            }
-        }
-        if (!itemFound) {
-            System.out.println("No item called " + inputString + " found in player's inventory.");
-        }
-    }
-
-    static void equip(String inputString) {
-        boolean itemFound = false;
-        for (Item item : player.getInventory()) {
-            if (Objects.equals(inputString, item.getName().toLowerCase())) {
-                itemFound = true;
-                if (item.getClass() == Weapon.class) {
-                    System.out.println(player.getEquippedWeapon().getName() + " unequipped.");
-                    player.equipWeapon((Weapon) item);
-                    System.out.println(item.getName() + " equipped.");
-                } else if (item.getClass() == Armor.class) {
-                    System.out.println(player.getEquippedArmor().getName() + " unequipped.");
-                    player.equipArmor((Armor) item);
-                    System.out.println(item.getName() + " equipped.");
-                } else {
-                    System.out.println("Item is not a weapon or piece of armor. Try again.");
-                }
                 break;
             }
         }
