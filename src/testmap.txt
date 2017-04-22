@@ -20,3 +20,4 @@ connection$7$9$northeast
 connection$8$9$east
 item$0$A strange coin$A dull and unrecognizable coin. It looks ancient, and it feels heavy for it's small size$Coin
 item$0$A brass key$A small brass key with no markings$Key
+lock$0$wheel$north

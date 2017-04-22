@@ -33,7 +33,7 @@ class Main {
         // Add lock to first room's north connection to room 2
         player.getCurrentMapRoom().addLockToDirection(roomConnectionDirection.DIRECTION_NORTH, new Wheel());
         // Add lock to second room's northeast connection to room 3
-        mapArea.getRoomsInArea().get(1).addLockToDirection(roomConnectionDirection.DIRECTION_NORTHEAST, new Lever());
+        //mapArea.getRoomsInArea().get(1).addLockToDirection(roomConnectionDirection.DIRECTION_NORTHEAST, new Lever());
 
         // Create a parser for handling command input
         Scanner scanner = new Scanner(System.in);

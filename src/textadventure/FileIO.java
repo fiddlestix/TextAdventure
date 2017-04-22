@@ -50,6 +50,15 @@ class FileIO {
                     String itemIdentifier = tokensInLine[4];
                     Item item = new Item(itemName, itemDescription, itemIdentifier);
                     room.getItemsInRoom().add(item);
+                } else if (Objects.equals(tokensInLine[0].toLowerCase(), "lock")) {
+                    MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
+                    String lockType = tokensInLine[2];
+                    MapArea.roomConnectionDirection direction = MapArea.getDirectionFromString(tokensInLine[3]);
+                    if (Objects.equals(lockType.toLowerCase(), "wheel")) {
+                        room.addLockToDirection(direction, new Wheel());
+                    } else if (Objects.equals(lockType.toLowerCase(), "lever")) {
+                        room.addLockToDirection(direction, new Lever());
+                    }
                 }
             }
 
