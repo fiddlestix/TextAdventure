@@ -30,11 +30,6 @@ class Main {
         // Create a new player starting in room 1
         Player player = new Player(mapArea.getRoomsInArea().get(0));
 
-        // Add lock to first room's north connection to room 2
-        player.getCurrentMapRoom().addLockToDirection(roomConnectionDirection.DIRECTION_NORTH, new Wheel());
-        // Add lock to second room's northeast connection to room 3
-        //mapArea.getRoomsInArea().get(1).addLockToDirection(roomConnectionDirection.DIRECTION_NORTHEAST, new Lever());
-
         // Create a parser for handling command input
         Scanner scanner = new Scanner(System.in);
         Command.setPlayer(player);

@@ -129,6 +129,7 @@ class Command {
         System.out.println("ne/northeast, nw/northwest, se/southeast, sw/southwest");
         System.out.println("up, down");
         System.out.println("Other commands: inventory, take, drop, equip, turn, pull");
+        System.out.println("                unlock, light");
         System.out.println("                q/quit");
     }
 
@@ -196,10 +197,12 @@ class Command {
 
     static void pull(String inputString) {
         if (Objects.equals(inputString.toLowerCase(), "lever")) {
+            boolean leverFound = false;
             for (roomConnectionDirection direction : roomConnectionDirection.values()) {
                 if (player.getCurrentMapRoom().getDirectionLock(direction) != null) {
-                    if (player.getCurrentMapRoom().isLocked(direction) && player.getCurrentMapRoom().getDirectionLock(direction).getClass() == Lever.class) {
+                    if (player.getCurrentMapRoom().getDirectionLock(direction).getClass() == Lever.class) {
                         Lever lever = (Lever) player.getCurrentMapRoom().getDirectionLock(direction);
+                        leverFound = true;
                         if (lever.checkIsLocked()) {
                             lever.pull();
                             player.getCurrentMapRoom().unlock(direction);
@@ -207,10 +210,11 @@ class Command {
                         } else {
                             System.out.println("The lever has already been pulled, and it is stuck.");
                         }
-                    } else {
-                        System.out.println("There is no lever in this room to pull.");
                     }
                 }
+            }
+            if (!leverFound) {
+                System.out.println("There is no lever in this room.");
             }
         }
     }
@@ -218,32 +222,74 @@ class Command {
     static void unlock(String inputString) {
         roomConnectionDirection direction = MapArea.getDirectionFromString(inputString);
         if (player.getCurrentMapRoom().getDirectionLock(direction) != null) {
-            if (player.getCurrentMapRoom().isLocked(direction) && player.getCurrentMapRoom().getDirectionLock(direction).getClass() == KeyLock.class) {
-                KeyLock lock = (KeyLock) player.getCurrentMapRoom().getDirectionLock(direction);
-                if (lock.checkIsLocked()) {
-                    Integer doorKeyID = lock.getKeyID();
+            if (player.getCurrentMapRoom().isLocked(direction)) {
+                if (player.getCurrentMapRoom().getDirectionLock(direction).getClass() == KeyLock.class) {
+                    KeyLock lock = (KeyLock) player.getCurrentMapRoom().getDirectionLock(direction);
+                    if (lock.checkIsLocked()) {
+                        Integer doorKeyID = lock.getKeyID();
 
-                    // loop through player's inventory looking for the correct key
-                    boolean keyFound = false;
-                    for (Item item : player.getInventory()) {
-                        if (item.getClass() == Key.class) {
-                            Key key = (Key) item;
-                            if (key.getKeyID() == doorKeyID) {
-                                lock.unlock(key.getKeyID());
-                                player.getCurrentMapRoom().unlock(direction);
-                                System.out.println("You unlock the door with your key.");
-                                keyFound = true;
+                        // loop through player's inventory looking for the correct key
+                        boolean keyFound = false;
+                        for (Item item : player.getInventory()) {
+                            if (item.getClass() == Key.class) {
+                                Key key = (Key) item;
+                                if (Objects.equals(key.getKeyID(), doorKeyID)) {
+                                    lock.unlock(key.getKeyID());
+                                    player.getCurrentMapRoom().unlock(direction);
+                                    System.out.println("You unlock the door with your key.");
+                                    keyFound = true;
+                                }
                             }
                         }
-                    }
-                    if (!keyFound) {
-                        System.out.println("You do not have the right key for that door.");
+                        if (!keyFound) {
+                            System.out.println("You do not have the right key for that door.");
+                        }
+                    } else {
+                        System.out.println("That door has already been unlocked.");
                     }
                 } else {
-                    System.out.println("That door has already been unlocked.");
+                    System.out.println("That type of lock does not require a key.");
                 }
             } else {
                 System.out.println("That door is not locked.");
+            }
+        } else {
+            System.out.println("There is no lock in that direction.");
+        }
+    }
+
+    static void light(String inputString) {
+        if (Objects.equals(inputString.toLowerCase(), "fireplace") || Objects.equals(inputString.toLowerCase(), "fire")) {
+            boolean fireFound = false;
+            for (roomConnectionDirection direction : roomConnectionDirection.values()) {
+                if (player.getCurrentMapRoom().getDirectionLock(direction) != null) {
+                    if (player.getCurrentMapRoom().getDirectionLock(direction).getClass() == Fireplace.class) {
+                        // check if player has matches in their inventory
+                        boolean foundMatches = false;
+                        for (Item item : player.getInventory()) {
+                            if (item.getClass() == Matches.class) {
+                                foundMatches = true;
+                            }
+                        }
+                        if (foundMatches) {
+                            Fireplace fireplace = (Fireplace) player.getCurrentMapRoom().getDirectionLock(direction);
+                            fireFound = true;
+                            if (fireplace.checkIsLocked()) {
+                                fireplace.light();
+                                player.getCurrentMapRoom().unlock(direction);
+                                System.out.println("You light the fireplace.");
+                            } else {
+                                System.out.println("The fireplace is already lit.");
+                            }
+                        } else {
+                            System.out.println("You do not have anything to light it with.");
+                            break;
+                        }
+                    }
+                }
+            }
+            if (!fireFound) {
+                System.out.println("There is nothing to light in this room.");
             }
         }
     }

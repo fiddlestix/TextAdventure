@@ -1,11 +1,11 @@
 room$a bedroom$This room is a richly-furnished bedroom, with Victorian-era paintings on the wall. It looks very fancy, but everything is covered in a layer of dust. There are spots on the wall where paintings used to hang, and the remains of a broken urn. The door is made of metal and has a wheel in the center, like something you would see on a ship or submarine.
-room$a hallway$This hallway connects several rooms in the house. It looks to be in poor repair, with peeling wallpaper and a painting hanging askew on the wall. A window at the end of the hall is boarded up, and you can hear the wind whistling through the cracks in the boards. There is a small metal lever next to the eastern door.
+room$a hallway$This hallway connects several rooms in the house. It looks to be in poor repair, with peeling wallpaper and a painting hanging askew on the wall. A window at the end of the hall is boarded up, and you can hear the wind whistling through the cracks in the boards. There is a small metal lever next to the eastern door, and the western door has a shiny brass lock.
 room$a room$This looks like an old storage room, piled high with empty crates. The air in here is musty and stale, and you can see mouse droppings on the floor.
 room$a small bedroom$This room looks like a child's room, with a small bed and old toys scattered about. There are cobwebs everywhere, it's obvious nobody has been in here for a very long time. A cracked picture frame shows a little girl in a puffy dress, but she isn't smiling.
 room$stairs$A wide staircase that connects the first and second floors of the house. The fancy red carpet is rotting away and the steps creak loudly.
-room$a foyer$A large foyer at the front of the house. The huge windows are boarded up with sturdy barricades, and an imposing painting of a severe-looking woman looms over the room.
+room$a foyer$A large foyer at the front of the house. The huge windows are boarded up with sturdy barricades, and an imposing painting of a severe-looking woman looms over the room. The front door is a polished wooden door with strange symbols on it.
 room$the outside$Outside of the house, if you've made it this far then you've won! REMEMBER TO CHANGE THIS TEXT LATER!!!
-room$a living room$This looks to be an old living room, home to family gatherings and parties. The only gatherings here now are between the mice and the spiders. There is a stone fireplace here with the charred remains of a recent fire.
+room$a living room$This looks to be an old living room, home to family gatherings and parties. The only gatherings here now are between the mice and the spiders. There is a stone fireplace here that looks like its been used recently.
 room$a dining room$This is a dining room, crowded by a large wooden table in the middle of the floor. The table still has plates and silverware set for a fancy dinner, covered in cobwebs. Once this place had held wine and laughter, but no longer.
 room$a kitchen$This looks to be an old kitchen, with a cast-iron oven, large countertops, and many cabinets with broken doors. The bittersweet stench of death is overpowering here, emanating from the rotting human corpse stuffed haphazardly into the oven. The corpse is bloated and disgusting, and your nostrils scream for you to leave this room.
 connection$0$1$north
@@ -18,9 +18,11 @@ connection$5$7$east
 connection$7$8$north
 connection$7$9$northeast
 connection$8$9$east
-item$0$A strange coin$A dull and unrecognizable coin. It looks ancient, and it feels heavy for it's small size$Coin
-item$0$A brass key$A small brass key with no markings$Key
 lock$0$wheel$north
 lock$1$lever$east
 keylock$1$west$100
-key$1$100$A small brass key
+key$0$100$A small brass key
+keylock$5$north$9999
+key$9$9999$An ornate key with strange markings, found on the corpse in the kitchen.
+matches$2
+lock$7$fireplace$north
