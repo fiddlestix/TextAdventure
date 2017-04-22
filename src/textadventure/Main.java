@@ -56,8 +56,22 @@ class Main {
         while(true) {
 
             // Display text upon entering a room
-            System.out.println("\n----------------------------");
-            System.out.println(player.getCurrentMapRoom().getRoomEntryText());
+            System.out.println("----------------------------");
+            String entryText = "";
+            int lineLength = 0;
+            String[] entryTextWords = player.getCurrentMapRoom().getRoomEntryText().split(" ");
+
+            for (String word : entryTextWords) {
+                if (lineLength > 80) {
+                    entryText = entryText + "\n" + word + " ";
+                    lineLength = 0;
+                } else {
+                    entryText = entryText + word + " ";
+                    lineLength = lineLength + word.length();
+                }
+            }
+
+            System.out.println(entryText);
 
             // Display connected rooms to player's current room
             System.out.println("");
@@ -71,6 +85,7 @@ class Main {
             }
             System.out.println("");
             // Parse and execute the command entered by the user
+            System.out.println("----------------------------");
             Parser.parseCommand(scanner.nextLine());
         }
     }

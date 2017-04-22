@@ -76,7 +76,7 @@ class MapRoom {
                             " to the " + MapArea.convertDirectionToString(direction));
                     count++;
                 } else if (count > 0 && count < stopCount - 1) {
-                    stringBuffer.append(",\n" + room.getConnectedMapRooms().get(direction).getRoomName() +
+                    stringBuffer.append("\n" + room.getConnectedMapRooms().get(direction).getRoomName() +
                                         " to the " + MapArea.convertDirectionToString(direction) + ",");
                     count++;
                 } else if (count == stopCount - 1){
