@@ -237,7 +237,7 @@ class Command {
                         }
                     }
                     if (!keyFound) {
-                        System.out.println("You do not have a key for that door.");
+                        System.out.println("You do not have the right key for that door.");
                     }
                 } else {
                     System.out.println("That door has already been unlocked.");

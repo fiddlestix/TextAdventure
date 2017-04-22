@@ -59,6 +59,15 @@ class FileIO {
                     } else if (Objects.equals(lockType.toLowerCase(), "lever")) {
                         room.addLockToDirection(direction, new Lever());
                     }
+                } else if (Objects.equals(tokensInLine[0].toLowerCase(), "keylock")) {
+                    MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
+                    MapArea.roomConnectionDirection direction = MapArea.getDirectionFromString(tokensInLine[2]);
+                    Integer doorKeyID = Integer.parseInt(tokensInLine[3]);
+                    room.addLockToDirection(direction, new KeyLock(doorKeyID));
+                } else if (Objects.equals(tokensInLine[0].toLowerCase(), "key")) {
+                    MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
+                    Integer keyID = Integer.parseInt(tokensInLine[2]);
+                    room.getItemsInRoom().add(new Key(keyID, tokensInLine[3]));
                 }
             }
 

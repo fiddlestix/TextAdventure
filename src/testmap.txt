@@ -22,3 +22,5 @@ item$0$A strange coin$A dull and unrecognizable coin. It looks ancient, and it f
 item$0$A brass key$A small brass key with no markings$Key
 lock$0$wheel$north
 lock$1$lever$east
+keylock$1$west$100
+key$1$100$A small brass key

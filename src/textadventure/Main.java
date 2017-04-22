@@ -39,10 +39,6 @@ class Main {
         Scanner scanner = new Scanner(System.in);
         Command.setPlayer(player);
 
-        // KEYLOCK TESTING...
-        mapArea.getRoomsInArea().get(1).addLockToDirection(roomConnectionDirection.DIRECTION_WEST, new KeyLock(1));
-        mapArea.getRoomsInArea().get(1).getItemsInRoom().add(new Key(1));
-
         // Display welcome message
         System.out.println("Welcome!\nType 'help' to see all of the commands!\n" +
                            "Explore the map and interact with the world using commands\n" +

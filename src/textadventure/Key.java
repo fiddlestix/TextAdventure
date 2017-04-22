@@ -7,10 +7,10 @@ public class Key extends Item {
 
     private Integer keyID;
 
-    Key(Integer keyID) {
-        this.setName("A Key");
+    Key(Integer keyID, String name) {
+        this.setName(name);
         this.setDescription("A key used to unlock doors.");
-        this.setIdentifier("key");
+        this.setIdentifier("Key");
         this.keyID = keyID;
     }
 
