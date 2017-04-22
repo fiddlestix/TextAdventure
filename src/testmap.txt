@@ -1,5 +1,5 @@
 room$a bedroom$This room is a richly-furnished bedroom, with Victorian-era paintings on the wall. It looks very fancy, but everything is covered in a layer of dust. There are spots on the wall where paintings used to hang, and the remains of a broken urn. The door is made of metal and has a wheel in the center, like something you would see on a ship or submarine.
-room$a hallway$This hallway connects several rooms in the house. It looks to be in poor repair, with peeling wallpaper and a painting hanging askew on the wall. A window at the end of the hall is boarded up, and you can hear the wind whistling through the cracks in the boards.
+room$a hallway$This hallway connects several rooms in the house. It looks to be in poor repair, with peeling wallpaper and a painting hanging askew on the wall. A window at the end of the hall is boarded up, and you can hear the wind whistling through the cracks in the boards. There is a small metal lever next to the eastern door.
 room$a room$This looks like an old storage room, piled high with empty crates. The air in here is musty and stale, and you can see mouse droppings on the floor.
 room$a small bedroom$This room looks like a child's room, with a small bed and old toys scattered about. There are cobwebs everywhere, it's obvious nobody has been in here for a very long time. A cracked picture frame shows a little girl in a puffy dress, but she isn't smiling.
 room$stairs$A wide staircase that connects the first and second floors of the house. The fancy red carpet is rotting away and the steps creak loudly.
@@ -21,3 +21,4 @@ connection$8$9$east
 item$0$A strange coin$A dull and unrecognizable coin. It looks ancient, and it feels heavy for it's small size$Coin
 item$0$A brass key$A small brass key with no markings$Key
 lock$0$wheel$north
+lock$1$lever$east

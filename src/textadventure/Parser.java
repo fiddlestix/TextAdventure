@@ -137,6 +137,11 @@ class Parser {
                         Command.pull(tokens[1]);
                     } else System.out.println("Missing or incorrect parameters. Try again.");
                     break;
+                case "unlock":
+                    if (tokens.length == 2) {
+                        Command.unlock(tokens[1]);
+                    } else System.out.println("Missing or incorrect parameters. Try again.");
+                    break;
                 default:
                     Command.invalidCommand();
                     break;

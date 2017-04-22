@@ -214,4 +214,37 @@ class Command {
             }
         }
     }
+
+    static void unlock(String inputString) {
+        roomConnectionDirection direction = MapArea.getDirectionFromString(inputString);
+        if (player.getCurrentMapRoom().getDirectionLock(direction) != null) {
+            if (player.getCurrentMapRoom().isLocked(direction) && player.getCurrentMapRoom().getDirectionLock(direction).getClass() == KeyLock.class) {
+                KeyLock lock = (KeyLock) player.getCurrentMapRoom().getDirectionLock(direction);
+                if (lock.checkIsLocked()) {
+                    Integer doorKeyID = lock.getKeyID();
+
+                    // loop through player's inventory looking for the correct key
+                    boolean keyFound = false;
+                    for (Item item : player.getInventory()) {
+                        if (item.getClass() == Key.class) {
+                            Key key = (Key) item;
+                            if (key.getKeyID() == doorKeyID) {
+                                lock.unlock(key.getKeyID());
+                                player.getCurrentMapRoom().unlock(direction);
+                                System.out.println("You unlock the door with your key.");
+                                keyFound = true;
+                            }
+                        }
+                    }
+                    if (!keyFound) {
+                        System.out.println("You do not have a key for that door.");
+                    }
+                } else {
+                    System.out.println("That door has already been unlocked.");
+                }
+            } else {
+                System.out.println("That door is not locked.");
+            }
+        }
+    }
 }
