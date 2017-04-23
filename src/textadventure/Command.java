@@ -166,6 +166,22 @@ class Command {
                 player.getInventory().remove(item);
                 itemFound = true;
                 System.out.println(item.getIdentifier() + " removed from inventory and added to current room.");
+
+                // Check for drop item puzzles
+                for (roomConnectionDirection direction : roomConnectionDirection.values()) {
+                    if (player.getCurrentMapRoom().getDirectionLock(direction) != null) {
+                        if (player.getCurrentMapRoom().getDirectionLock(direction).getClass() == DropLock.class) {
+                            DropLock lock = (DropLock) player.getCurrentMapRoom().getDirectionLock(direction);
+                            if (Objects.equals(item.getIdentifier().toLowerCase(), lock.getKeyItemIdentifier().toLowerCase())) {
+                                lock.open(item.getIdentifier());
+                                player.getCurrentMapRoom().unlock(direction);
+                                System.out.println("\nDropping the " + item.getIdentifier().toLowerCase() + " causes the " +
+                                        MapArea.convertDirectionToString(direction) + " door to shake and rattle.");
+                            }
+                        }
+                    }
+                }
+
                 break;
             }
         }

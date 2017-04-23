@@ -70,9 +70,12 @@ class FileIO {
                     MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
                     Integer keyID = Integer.parseInt(tokensInLine[2]);
                     room.getItemsInRoom().add(new Key(keyID, tokensInLine[3]));
-                } else if (Objects.equals(tokensInLine[0], "matches")) {
+                } else if (Objects.equals(tokensInLine[0].toLowerCase(), "matches")) {
                     MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
                     room.getItemsInRoom().add(new Matches());
+                } else if (Objects.equals(tokensInLine[0].toLowerCase(), "droplock")) {
+                    MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
+                    room.addLockToDirection(MapArea.getDirectionFromString(tokensInLine[2]), new DropLock(tokensInLine[3]));
                 }
             }
 
