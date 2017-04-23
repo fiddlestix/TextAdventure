@@ -76,6 +76,11 @@ class FileIO {
                 } else if (Objects.equals(tokensInLine[0].toLowerCase(), "droplock")) {
                     MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
                     room.addLockToDirection(MapArea.getDirectionFromString(tokensInLine[2]), new DropLock(tokensInLine[3]));
+                } else if (Objects.equals(tokensInLine[0].toLowerCase(), "riddlelock")) {
+                    MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
+                    MapArea.roomConnectionDirection direction = MapArea.getDirectionFromString(tokensInLine[2]);
+                    String riddleAnswer = tokensInLine[3];
+                    room.addLockToDirection(direction, new RiddleLock(riddleAnswer));
                 }
             }
 

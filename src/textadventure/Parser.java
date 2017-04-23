@@ -147,6 +147,11 @@ class Parser {
                         Command.light(tokens[1]);
                     } else System.out.println("Missing or incorrect parameters. Try again.");
                     break;
+                case "say":
+                    if (tokens.length == 2) {
+                        Command.say(tokens[1]);
+                    } else System.out.println("Missing or incorrect parameters. Try again.");
+                    break;
                 default:
                     Command.invalidCommand();
                     break;

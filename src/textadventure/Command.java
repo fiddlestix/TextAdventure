@@ -129,7 +129,7 @@ class Command {
         System.out.println("ne/northeast, nw/northwest, se/southeast, sw/southwest");
         System.out.println("up, down");
         System.out.println("Other commands: inventory, take, drop, equip, turn, pull");
-        System.out.println("                unlock, light");
+        System.out.println("                unlock, light, say");
         System.out.println("                q/quit");
     }
 
@@ -307,6 +307,30 @@ class Command {
             if (!fireFound) {
                 System.out.println("There is nothing to light in this room.");
             }
+        }
+    }
+
+    static void say(String inputString) {
+        boolean riddleLockFound = false;
+        boolean riddleLockUnlocked = false;
+        for (roomConnectionDirection direction : roomConnectionDirection.values()) {
+            if (player.getCurrentMapRoom().getDirectionLock(direction) != null) {
+                if (player.getCurrentMapRoom().getDirectionLock(direction).getClass() == RiddleLock.class) {
+                    RiddleLock lock = (RiddleLock) player.getCurrentMapRoom().getDirectionLock(direction);
+                    riddleLockFound = true;
+                    if (lock.checkIsLocked()) {
+                        if (lock.open(inputString)) {
+                            riddleLockUnlocked = true;
+                            player.getCurrentMapRoom().unlock(direction);
+                            System.out.println("The " + MapArea.convertDirectionToString(direction).toLowerCase() + " door makes a clicking noise after you say '" +
+                                    inputString.toLowerCase() + "' out loud.");
+                        }
+                    }
+                }
+            }
+        }
+        if (!riddleLockFound || !riddleLockUnlocked) {
+            System.out.println("Nothing happens when you say '" + inputString + "' out loud. You feel like a fool talking to yourself.");
         }
     }
 }

@@ -6,7 +6,7 @@ room$stairs$A wide staircase that connects the first and second floors of the ho
 room$a foyer$A large foyer at the front of the house. The huge windows are boarded up with sturdy barricades, and an imposing painting of a severe-looking woman looms over the room. The front door is a polished wooden door with strange symbols on it.
 room$the outside$Outside of the house, if you've made it this far then you've won! REMEMBER TO CHANGE THIS TEXT LATER!!!
 room$a living room$This looks to be an old living room, home to family gatherings and parties. The only gatherings here now are between the mice and the spiders. There is a stone fireplace here that looks like its been used recently.
-room$a dining room$This is a dining room, crowded by a large wooden table in the middle of the floor. The table still has plates and silverware set for a fancy dinner, covered in cobwebs. Once this place had held wine and laughter, but no longer.
+room$a dining room$This is a dining room, crowded by a large wooden table in the middle of the floor. The table still has plates and silverware set for a fancy dinner, covered in cobwebs. Once this place had held wine and laughter, but no longer. Over the door to the kitchen reads an inscription: 'Poor people have it. Rich people need it. If you eat it you die. What is it?'
 room$a kitchen$This looks to be an old kitchen, with a cast-iron oven, large countertops, and many cabinets with broken doors. The bittersweet stench of death is overpowering here, emanating from the rotting human corpse stuffed haphazardly into the oven. The corpse is bloated and disgusting, and your nostrils scream for you to leave this room.
 connection$0$1$north
 connection$1$2$east
@@ -28,3 +28,4 @@ matches$2
 lock$7$fireplace$north
 item$3$An idol depicting an ancient god with flowing wings$An old and worn statue made of a very light metal, depiccting a goddess with angelic wings.$Idol
 droplock$7$northeast$idol
+riddlelock$8$east$nothing
