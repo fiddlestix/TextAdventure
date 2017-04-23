@@ -126,11 +126,13 @@ class Command {
     static void help() {
         System.out.println("Commands:");
         System.out.println("Directional commands: n/north, s/south, e/east, w/west");
-        System.out.println("ne/northeast, nw/northwest, se/southeast, sw/southwest");
-        System.out.println("up, down");
-        System.out.println("Other commands: inventory, take, drop, equip, turn, pull");
-        System.out.println("                unlock, light, say");
+        System.out.println("                      ne/northeast, nw/northwest, se/southeast,");
+        System.out.println("                      sw/southwest, up, down");
+        System.out.println("");
+        System.out.println("Other commands: inventory, take, drop, turn, pull");
+        System.out.println("                light, say, unlock [direction]");
         System.out.println("                q/quit");
+        System.out.println("");
     }
 
     static void inventory() {

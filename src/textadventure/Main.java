@@ -35,9 +35,12 @@ class Main {
         Command.setPlayer(player);
 
         // Display welcome message
-        System.out.println("Welcome!\nType 'help' to see all of the commands!\n" +
-                           "Explore the map and interact with the world using commands\n" +
-                           "such as 'take key' or 'pull lever'\n");
+        System.out.println("--------------------------------------------------------------" +
+                           "Welcome!\nType 'help' to see all of the commands!\n" +
+                           "You must escape the house by solving puzzles and interacting\n" +
+                           "with the world around you. Try using commands such as 'take key'\n" +
+                           "or 'pull lever'\n" +
+                           "--------------------------------------------------------------\n");
 
         // Create game loop to wait for and capture user input
         while(true) {
