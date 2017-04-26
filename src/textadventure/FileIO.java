@@ -83,6 +83,9 @@ class FileIO {
                     MapArea.roomConnectionDirection direction = MapArea.getDirectionFromString(tokensInLine[2]);
                     String riddleAnswer = tokensInLine[3];
                     room.addLockToDirection(direction, new RiddleLock(riddleAnswer));
+                } else if (Objects.equals(tokensInLine[0].toLowerCase(), "storytext")) {
+                    MapRoom room = newMapArea.getRoomsInArea().get(Integer.parseInt(tokensInLine[1]));
+                    room.setRoomEntryStoryText(tokensInLine[2]);
                 }
             }
 

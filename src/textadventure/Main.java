@@ -1,7 +1,6 @@
 package textadventure;
 
 import java.util.Scanner;
-import textadventure.MapArea.roomConnectionDirection;
 
 /**
  * Text-based Adventure Game
@@ -20,6 +19,8 @@ import textadventure.MapArea.roomConnectionDirection;
 
 class Main {
 
+    private static final int WORDWRAP_LINE_LIMITER = 100;
+
     public static void main(String[] args) {
 
         // Just testing some early map stuff here
@@ -34,30 +35,31 @@ class Main {
         Scanner scanner = new Scanner(System.in);
         Command.setPlayer(player);
 
-        // Display welcome message
-        System.out.println("--------------------------------------------------------------" +
-                           "Welcome!\nType 'help' to see all of the commands!\n" +
-                           "You must escape the house by solving puzzles and interacting\n" +
-                           "with the world around you. Try using commands such as 'take key'\n" +
-                           "or 'pull lever'\n" +
-                           "--------------------------------------------------------------\n");
-
         // Create game loop to wait for and capture user input
         while(true) {
 
+            MapRoom currentRoom = player.getCurrentMapRoom();
+
             // Display text upon entering a room
             System.out.println("----------------------------");
-            System.out.println(FileIO.formatTextForConsole(player.getCurrentMapRoom().getRoomEntryText(), 100));
+            if (!currentRoom.hasRoomBeenVisited()) {
+                if (currentRoom.getRoomEntryStoryText() != null) {
+                    System.out.println(FileIO.formatTextForConsole(currentRoom.getRoomEntryStoryText(), WORDWRAP_LINE_LIMITER));
+                    currentRoom.setRoomHasBeenVisited(true);
+                    System.out.println("");
+                }
+            }
+            System.out.println(FileIO.formatTextForConsole(currentRoom.getRoomEntryText(), WORDWRAP_LINE_LIMITER));
 
             // Display connected rooms to player's current room
             System.out.println("");
-            MapRoom.printConnectedMapRooms(player.getCurrentMapRoom());
+            MapRoom.printConnectedMapRooms(currentRoom);
             System.out.println("");
 
             // Display items in the room
-            if (!player.getCurrentMapRoom().getItemsInRoom().isEmpty()) {
+            if (!currentRoom.getItemsInRoom().isEmpty()) {
                 System.out.println("\nItems in room:");
-                for (Item item : player.getCurrentMapRoom().getItemsInRoom()) {
+                for (Item item : currentRoom.getItemsInRoom()) {
                     System.out.println(item.getName());
                 }
                 System.out.println("");

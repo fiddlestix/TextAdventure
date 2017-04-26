@@ -29,10 +29,12 @@ class MapRoom {
     private Integer roomIndex;
     private String roomName;
     private String roomEntryText;
+    private String roomEntryStoryText;
     private EnumMap<roomConnectionDirection, MapRoom> connectedMapRooms;
     private EnumMap<roomConnectionDirection, Boolean> directionIsLocked;
     private EnumMap<roomConnectionDirection, DirectionLock> directionLockMechanism;
     private ArrayList<Item> itemsInRoom;
+    private boolean roomHasBeenVisited;
 
     // ************************
     // ***** Constructors *****
@@ -47,7 +49,8 @@ class MapRoom {
         this.directionLockMechanism = new EnumMap<>(roomConnectionDirection.class);
         setConnectedMapRoomsToNull();
         setDirectionLocksToNull();
-        itemsInRoom = new ArrayList<>();
+        this.itemsInRoom = new ArrayList<>();
+        this.roomHasBeenVisited = false;
     }
 
     // *******************
@@ -155,6 +158,22 @@ class MapRoom {
     // *******************************
     String getRoomEntryText() {
         return this.roomEntryText;
+    }
+
+    String getRoomEntryStoryText() {
+        return roomEntryStoryText;
+    }
+
+    void setRoomHasBeenVisited(boolean bool) {
+        this.roomHasBeenVisited = bool;
+    }
+
+    boolean hasRoomBeenVisited() {
+        return roomHasBeenVisited;
+    }
+
+    void setRoomEntryStoryText(String string) {
+        this.roomEntryStoryText = string;
     }
 
     private String getRoomName() {

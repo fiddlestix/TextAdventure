@@ -29,3 +29,4 @@ lock$7$fireplace$north
 item$3$An idol depicting an ancient god with flowing wings$An old and worn statue made of a very light metal, depicting a goddess with angelic wings.$Idol
 droplock$7$northeast$idol
 riddlelock$8$east$nothing
+storytext$0$You slowly open your eyes and awaken in an unfamiliar place. You try to remember what happened last night, but you're having difficulty even remembering your name. 
