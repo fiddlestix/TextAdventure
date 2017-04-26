@@ -91,4 +91,21 @@ class FileIO {
         }
         return newMapArea;
     }
+
+    static String formatTextForConsole(String text, Integer lineLimit) {
+        int lineLength = 0;
+        String formattedText = "";
+        String[] textWords = text.split(" ");
+
+        for (String word : textWords) {
+            if (lineLength > lineLimit) {
+                formattedText = formattedText + "\n" + word + " ";
+                lineLength = 0;
+            } else {
+                formattedText = formattedText + word + " ";
+                lineLength = lineLength + word.length();
+            }
+        }
+        return formattedText;
+    }
 }

@@ -47,21 +47,7 @@ class Main {
 
             // Display text upon entering a room
             System.out.println("----------------------------");
-            String entryText = "";
-            int lineLength = 0;
-            String[] entryTextWords = player.getCurrentMapRoom().getRoomEntryText().split(" ");
-
-            for (String word : entryTextWords) {
-                if (lineLength > 80) {
-                    entryText = entryText + "\n" + word + " ";
-                    lineLength = 0;
-                } else {
-                    entryText = entryText + word + " ";
-                    lineLength = lineLength + word.length();
-                }
-            }
-
-            System.out.println(entryText);
+            System.out.println(FileIO.formatTextForConsole(player.getCurrentMapRoom().getRoomEntryText(), 100));
 
             // Display connected rooms to player's current room
             System.out.println("");
