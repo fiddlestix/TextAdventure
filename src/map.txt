@@ -26,6 +26,6 @@ keylock$5$north$9999
 key$9$9999$An ornate key with strange markings, found on the corpse in the kitchen.
 matches$2
 lock$7$fireplace$north
-item$3$An idol depicting an ancient god with flowing wings$An old and worn statue made of a very light metal, depiccting a goddess with angelic wings.$Idol
+item$3$An idol depicting an ancient god with flowing wings$An old and worn statue made of a very light metal, depicting a goddess with angelic wings.$Idol
 droplock$7$northeast$idol
 riddlelock$8$east$nothing

@@ -28,7 +28,9 @@ class FileIO {
 
     static MapArea loadMapFromFile() {
         MapArea newMapArea = new MapArea();
-        File file = new File("src/testmap.txt");
+
+        String fileName = "src" + File.separator + "map.txt";
+        File file = new File(fileName);
         try {
             Scanner scanner = new Scanner(file);
             String line;
