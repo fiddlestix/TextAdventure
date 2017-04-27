@@ -78,32 +78,32 @@ class MapRoom {
                 if (count == 0) {
                     // Record connected room and direction
                     if (direction == roomConnectionDirection.DIRECTION_UP) {
-                        stringBuffer.append("This room is connected to " + room.getConnectedMapRooms().get(direction).getRoomName() + " upstairs.");
+                        stringBuffer.append("This room is connected to a " + room.getConnectedMapRooms().get(direction).getRoomName() + " upstairs.");
                     } else if (direction == roomConnectionDirection.DIRECTION_DOWN) {
-                        stringBuffer.append("This room is connected to " + room.getConnectedMapRooms().get(direction).getRoomName() + " downstairs.");
+                        stringBuffer.append("This room is connected to a " + room.getConnectedMapRooms().get(direction).getRoomName() + " downstairs.");
                     } else {
-                        stringBuffer.append("This room is connected to " + room.getConnectedMapRooms().get(direction).getRoomName() +
+                        stringBuffer.append("This room is connected to a " + room.getConnectedMapRooms().get(direction).getRoomName() +
                                 " to the " + MapArea.convertDirectionToString(direction));
 
                     }
                     count++;
                 } else if (count > 0 && count < stopCount - 1) {
                     if (direction == roomConnectionDirection.DIRECTION_UP) {
-                        stringBuffer.append("\n" + room.getConnectedMapRooms().get(direction).getRoomName() + " upstairs,");
+                        stringBuffer.append("\na " + room.getConnectedMapRooms().get(direction).getRoomName() + " upstairs,");
                     } else if (direction == roomConnectionDirection.DIRECTION_DOWN) {
-                        stringBuffer.append("\n" + room.getConnectedMapRooms().get(direction).getRoomName() + " downstairs,");
+                        stringBuffer.append("\na " + room.getConnectedMapRooms().get(direction).getRoomName() + " downstairs,");
                     } else {
-                        stringBuffer.append("\n" + room.getConnectedMapRooms().get(direction).getRoomName() +
+                        stringBuffer.append("\na " + room.getConnectedMapRooms().get(direction).getRoomName() +
                                 " to the " + MapArea.convertDirectionToString(direction) + ",");
                     }
                     count++;
                 } else if (count == stopCount - 1){
                     if (direction == roomConnectionDirection.DIRECTION_UP) {
-                        stringBuffer.append("\nand " + room.getConnectedMapRooms().get(direction).getRoomName() + " upstairs");
+                        stringBuffer.append("\nand a " + room.getConnectedMapRooms().get(direction).getRoomName() + " upstairs");
                     } else if (direction == roomConnectionDirection.DIRECTION_DOWN) {
-                        stringBuffer.append("\nand " + room.getConnectedMapRooms().get(direction).getRoomName() + " downstairs");
+                        stringBuffer.append("\nand a " + room.getConnectedMapRooms().get(direction).getRoomName() + " downstairs");
                     } else {
-                        stringBuffer.append("\nand " + room.getConnectedMapRooms().get(direction).getRoomName() +
+                        stringBuffer.append("\nand a " + room.getConnectedMapRooms().get(direction).getRoomName() +
                                 " to the " + MapArea.convertDirectionToString(direction));
                     }
                 }
@@ -153,6 +153,26 @@ class MapRoom {
         return null;
     }
 
+    static void lookAroundRoom(MapRoom room) {
+        final int WORDWRAP_LINE_LIMITER = 100;
+
+        System.out.println("");
+        System.out.println(FileIO.formatTextForConsole(room.getRoomEntryText(), WORDWRAP_LINE_LIMITER));
+        // Display connected rooms to player's current room
+        System.out.println("");
+        MapRoom.printConnectedMapRooms(room);
+        System.out.println("");
+
+        // Display items in the room
+        if (!room.getItemsInRoom().isEmpty()) {
+            System.out.println("\nItems in room:");
+            for (Item item : room.getItemsInRoom()) {
+                System.out.println(item.getName());
+            }
+            System.out.println("");
+        }
+    }
+
     // *******************************
     // ***** Getters and Setters *****
     // *******************************
@@ -176,7 +196,7 @@ class MapRoom {
         this.roomEntryStoryText = string;
     }
 
-    private String getRoomName() {
+    String getRoomName() {
         return this.roomName;
     }
 

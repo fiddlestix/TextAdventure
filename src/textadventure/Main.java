@@ -1,5 +1,6 @@
 package textadventure;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -37,8 +38,10 @@ class Main {
 
         // Show welcome message
         System.out.println("'Just Another Day'\n\n" +
+                           "!!! RESIZE YOUR CONSOLE WINDOW TO FIT YOUR SCREEN FOR BEST RESULTS !!!\n" +
                            "In this game you must interact with the environment to solve puzzles and escape the house.\n" +
                            "Manipulate objects in the world using commands such as 'take key', 'pull lever', or 'inventory'.\n" +
+                           "You can look at the room you are in by using the 'look' or 'lookaround' commands.\n" +
                            "You can see a list of all of the commands at any time by typing 'help'.\n\n" +
                            "Move around the map by typing directional commands such as 'north' or ('n' as a shortcut) and\n" +
                            "'down'. Unlock doors by specifying the direction to unlock, like 'unlock north'. Note that the\n" +
@@ -50,33 +53,28 @@ class Main {
         while(true) {
 
             MapRoom currentRoom = player.getCurrentMapRoom();
+            boolean firstLoop = true;
 
             // Display text upon entering a room
-            System.out.println("---------------------------------------------------------------------------------------------------");
             if (!currentRoom.hasRoomBeenVisited()) {
+                System.out.println("---------------------------------------------------------------------------------------------------");
                 if (currentRoom.getRoomEntryStoryText() != null) {
                     System.out.println(FileIO.formatTextForConsole(currentRoom.getRoomEntryStoryText(), WORDWRAP_LINE_LIMITER));
-                    currentRoom.setRoomHasBeenVisited(true);
                     System.out.println("");
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Command.lookAround();
+                if (firstLoop) {
+                    currentRoom.setRoomHasBeenVisited(true);
+                    firstLoop = false;
                 }
             }
-            System.out.println(FileIO.formatTextForConsole(currentRoom.getRoomEntryText(), WORDWRAP_LINE_LIMITER));
 
-            // Display connected rooms to player's current room
-            System.out.println("");
-            MapRoom.printConnectedMapRooms(currentRoom);
-            System.out.println("");
-
-            // Display items in the room
-            if (!currentRoom.getItemsInRoom().isEmpty()) {
-                System.out.println("\nItems in room:");
-                for (Item item : currentRoom.getItemsInRoom()) {
-                    System.out.println(item.getName());
-                }
-                System.out.println("");
-            }
             // Parse and execute the command entered by the user
-            System.out.println("----------------------------");
             Parser.parseCommand(scanner.nextLine());
         }
     }

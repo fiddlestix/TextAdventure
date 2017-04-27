@@ -33,7 +33,7 @@ class Parser {
         String[] tokens = str.split(" ");
 
         if (tokens.length == 1) {
-            switch (tokens[0]) {
+            switch (tokens[0].toLowerCase()) {
                 case "n":
                     Command.north();
                     break;
@@ -105,6 +105,12 @@ class Parser {
                     break;
                 case "inventory":
                     Command.inventory();
+                    break;
+                case "lookaround":
+                    Command.lookAround();
+                    break;
+                case "look":
+                    Command.lookAround();
                     break;
                 default:
                     Command.invalidCommand();
