@@ -29,4 +29,6 @@ lock$7$fireplace$north
 item$3$An idol depicting an ancient god with flowing wings$An old and worn statue made of a very light metal, depicting a goddess with angelic wings.$Idol
 droplock$7$northeast$idol
 riddlelock$8$east$nothing
-storytext$0$You slowly open your eyes and awaken in an unfamiliar place. You try to remember what happened last night, but you're having difficulty even remembering your name. 
+storytext$0$You slowly open your eyes and awaken in an unfamiliar place. You try to remember how you got here, what happened last night, but you have trouble even remembering your own name. You feel an overwhelming sense of dread, you must escape this place.
+storytext$1$Why would my door be locked from the inside? Who or what was it meant to keep out?
+storytext$2$You see the blur of a mouse scurrying away as the door creaks open.
