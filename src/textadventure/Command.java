@@ -239,7 +239,7 @@ class Command {
                         if (wheel.checkIsLocked()) {
                             wheel.turn();
                             player.getCurrentMapRoom().unlock(direction);
-                            System.out.println("You turn the wheel until it stops.");
+                            System.out.println(FileIO.formatTextForConsole("You turn the wheel until it stops, and as you do you can feel something in the " + MapArea.convertDirectionToString(direction) + " door move.", 100));
                         } else {
                             System.out.println("The wheel has already been turned all the way.");
                         }
@@ -262,7 +262,7 @@ class Command {
                         if (lever.checkIsLocked()) {
                             lever.pull();
                             player.getCurrentMapRoom().unlock(direction);
-                            System.out.println("You pull the lever.");
+                            System.out.println("You pull the lever and the " + MapArea.convertDirectionToString(direction) + " door makes a loud clanking noise.");
                         } else {
                             System.out.println("The lever has already been pulled, and it is stuck.");
                         }
@@ -333,7 +333,7 @@ class Command {
                             if (fireplace.checkIsLocked()) {
                                 fireplace.light();
                                 player.getCurrentMapRoom().unlock(direction);
-                                System.out.println("You light the fireplace.");
+                                System.out.println("You light the fireplace, and as it burns you hear a soft clicking noise from the " + MapArea.convertDirectionToString(direction) + " door.");
                             } else {
                                 System.out.println("The fireplace is already lit.");
                             }
