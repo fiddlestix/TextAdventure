@@ -62,7 +62,7 @@ class Main {
                     System.out.println(FileIO.formatTextForConsole(currentRoom.getRoomEntryStoryText(), WORDWRAP_LINE_LIMITER));
                     System.out.println("");
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
