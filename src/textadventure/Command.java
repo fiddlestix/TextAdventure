@@ -153,12 +153,12 @@ class Command {
     }
 
     static void quit() {
-        System.out.println("Quitting game...");
+        System.out.println("Quitting game...\nThanks for playing!");
         System.exit(0);
     }
 
     static void invalidCommand() {
-        System.out.println("Command not recognized, enter 'help' to see a list of commands.");
+        System.out.println("Command not recognized, type 'help' to see a list of commands.");
     }
 
     static void help() {
