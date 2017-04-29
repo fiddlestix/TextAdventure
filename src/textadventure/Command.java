@@ -167,7 +167,7 @@ class Command {
         System.out.println("                      ne/northeast, nw/northwest, se/southeast,");
         System.out.println("                      sw/southwest, up, down");
         System.out.println("");
-        System.out.println("Other commands: lookaround/look, inventory, take, drop,");
+        System.out.println("Other commands: look/l, inventory, take, drop,");
         System.out.println("                turn, pull, light, say,");
         System.out.println("                unlock [direction], q/quit");
         System.out.println("");

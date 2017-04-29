@@ -105,7 +105,7 @@ class Parser {
             case "inventory":
                 Command.inventory();
                 break;
-            case "lookaround":
+            case "l":
                 Command.lookAround();
                 break;
             case "look":

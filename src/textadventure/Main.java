@@ -41,7 +41,7 @@ class Main {
                            "!!! RESIZE YOUR CONSOLE WINDOW TO FIT YOUR SCREEN FOR BEST RESULTS !!!\n" +
                            "In this game you must interact with the environment to solve puzzles and escape the house.\n" +
                            "Manipulate objects in the world using commands such as 'take key', 'pull lever', or 'inventory'.\n" +
-                           "You can look at the room you are in by using the 'look' or 'lookaround' commands.\n" +
+                           "You can look at the room you are in by using the 'look' or 'l' commands.\n" +
                            "You can see a list of all of the commands at any time by typing 'help'.\n\n" +
                            "Move around the map by typing directional commands such as 'north' or ('n' as a shortcut) and\n" +
                            "'down'. Unlock doors by specifying the direction to unlock, like 'unlock north'. Note that the\n" +
