@@ -2,46 +2,35 @@ package textadventure;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.Objects;
-
 import textadventure.MapArea.roomConnectionDirection;
 
 /**
- * Text-based Adventure Game
- *
- * A project for CMSC 495 7982
- * Trends and Projects in Computer Science
- * University of Maryland University College
- *
- * Jeff Schouw
- * Mansukh Saini
- * Lionel Rockymore
- *
- * MapRoom.java
- * A class for a single room on the map, containing loot, enemies, etc...
+ * Represents a single area in the map. Contains connections to other areas
+ * of the map, a description and a piece of the story, items, locks, and puzzles.
  */
-
 class MapRoom {
     // ******************
     // ***** Fields *****
     // ******************
-    private static int roomIndexCounter = 0;
-    private Integer roomIndex;
-    private String roomName;
-    private String roomEntryText;
-    private String roomEntryStoryText;
-    private EnumMap<roomConnectionDirection, MapRoom> connectedMapRooms;
-    private EnumMap<roomConnectionDirection, Boolean> directionIsLocked;
-    private EnumMap<roomConnectionDirection, DirectionLock> directionLockMechanism;
-    private ArrayList<Item> itemsInRoom;
-    private boolean roomHasBeenVisited;
+    private String roomName; // A short, 1 - 2 word description for the room
+    private String roomEntryText; // The description of the room, to be displayed when entering
+    private String roomEntryStoryText; // The story attached to the room, to be displayed right before entering
+    private EnumMap<roomConnectionDirection, MapRoom> connectedMapRooms; // A list of connected rooms
+    private EnumMap<roomConnectionDirection, Boolean> directionIsLocked; // A list of booleans tracking locked directions
+    private EnumMap<roomConnectionDirection, DirectionLock> directionLockMechanism; // A list of DirectionLocks for connected rooms
+    private ArrayList<Item> itemsInRoom; // A list of items in the room
+    private boolean roomHasBeenVisited; // A boolean tracking whether the player has already been in the room
 
     // ************************
     // ***** Constructors *****
     // ************************
+
+    /**
+     * Creates a room object, using the given name and description.
+     * @param newRoomName The brief, 1 - 2 word description for the room.
+     * @param newRoomEntryText The detailed description of the room.
+     */
     MapRoom(String newRoomName, String newRoomEntryText) {
-        this.roomIndex = roomIndexCounter;
-        roomIndexCounter++;
         this.roomName = newRoomName;
         this.roomEntryText = newRoomEntryText;
         this.connectedMapRooms = new EnumMap<>(roomConnectionDirection.class);
@@ -56,15 +45,20 @@ class MapRoom {
     // *******************
     // ***** Methods *****
     // *******************
-    static void printConnectedMapRooms(MapRoom room) {
-        /*
-          Prints a list to the console, of connected rooms to given room
-         */
+
+    /**
+     * Prints a list of connected rooms to the console in a natural
+     * sentence-like format.
+     * @param room Room to print connected rooms for.
+     */
+    private static void printConnectedMapRooms(MapRoom room) {
+
         StringBuffer stringBuffer = new StringBuffer("");
         int count = 0;
         int stopCount = 0;
 
         // Loop through connected map rooms to count them
+        // This is important for creating a more natural output
         for (roomConnectionDirection direction : roomConnectionDirection.values()) {
             if (room.getConnectedMapRooms().get(direction) != null) {
                 stopCount++;
@@ -113,39 +107,45 @@ class MapRoom {
         System.out.println(stringBuffer);
     }
 
-    boolean addLockToDirection(roomConnectionDirection direction, DirectionLock lock) {
-        /*
-          Adds a DirectionLock to a room's travel table. Returns true if successful and
-          false if unsuccessful.
-         */
+    /**
+     * Adds a DirectionLock to a room, in the given direction.
+     * @param direction Direction to lock.
+     * @param lock DirectionLock object to set in that direction.
+     */
+    void addLockToDirection(roomConnectionDirection direction, DirectionLock lock) {
+
         // Check if that direction is already locked
         if (!this.isLocked(direction)) {
             // Set that direction to locked, add DirectionLock object to travel table
             this.directionIsLocked.put(direction, true);
             this.directionLockMechanism.put(direction, lock);
-            return true;
-        } else return false;
+        }
     }
 
-    boolean removeLockFromDirection(roomConnectionDirection direction) {
-        if (this.directionIsLocked.get(direction)) {
-            this.directionIsLocked.replace(direction, false);
-            this.directionLockMechanism.remove(direction);
-            return true;
-        } else return false;
-    }
-
+    /**
+     * Checks if a room is locked in the given direction.
+     * @param direction Direction to check.
+     * @return Returns true if it is locked, false if it is not.
+     */
     boolean isLocked(roomConnectionDirection direction) {
         return this.directionIsLocked.get(direction) != null && this.directionIsLocked.get(direction);
     }
 
-    boolean unlock(roomConnectionDirection direction) {
+    /**
+     * Unlocks the DirectionLock in a room for the given direction.
+     * @param direction Direction to unlock.
+     */
+    void unlock(roomConnectionDirection direction) {
         if (this.isLocked(direction)) {
             this.directionIsLocked.replace(direction, false);
-            return true;
-        } else return false;
+        }
     }
 
+    /**
+     * Returns the DirectionLock object for the given direction.
+     * @param direction Direction to get.
+     * @return The DirectionLock in the given direction.
+     */
     DirectionLock getDirectionLock(roomConnectionDirection direction) {
         if (this.isLocked(direction)) {
             return this.directionLockMechanism.get(direction);
@@ -153,6 +153,10 @@ class MapRoom {
         return null;
     }
 
+    /**
+     * Prints a description of the room to the console, including items in the room
+     * @param room Room to show
+     */
     static void lookAroundRoom(MapRoom room) {
         final int WORDWRAP_LINE_LIMITER = 100;
 
@@ -176,7 +180,7 @@ class MapRoom {
     // *******************************
     // ***** Getters and Setters *****
     // *******************************
-    String getRoomEntryText() {
+    private String getRoomEntryText() {
         return this.roomEntryText;
     }
 
@@ -200,20 +204,22 @@ class MapRoom {
         return this.roomName;
     }
 
-    Integer getRoomIndex() {
-        return this.roomIndex;
-    }
-
     EnumMap<roomConnectionDirection, MapRoom> getConnectedMapRooms() {
         return this.connectedMapRooms;
     }
 
+    /**
+     * Sets all rooms connected to this room to null, to prevent errors with null access exceptions
+     */
     private void setConnectedMapRoomsToNull() {
         for (roomConnectionDirection direction : roomConnectionDirection.values()) {
             this.connectedMapRooms.put(direction, null);
         }
     }
 
+    /**
+     * Sets all DirectionLocks in a room to null, to prevent errors with null access exceptions
+     */
     private void setDirectionLocksToNull() {
         for (roomConnectionDirection direction : directionIsLocked.keySet()) {
             directionIsLocked.put(direction, null);

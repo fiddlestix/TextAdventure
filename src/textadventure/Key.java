@@ -1,12 +1,20 @@
 package textadventure;
 
 /**
- * Created by J on 4/21/2017.
+ * Represents a key for a door lock.
  */
-public class Key extends Item {
+class Key extends Item {
 
+    /**
+     * The identifier for the key and it's lock.
+     */
     private Integer keyID;
 
+    /**
+     * Creates a Key object using the given keyID and name.
+     * @param keyID Identifier for the key/lock combo.
+     * @param name A short description of the key.
+     */
     Key(Integer keyID, String name) {
         this.setName(name);
         this.setDescription("A key used to unlock doors.");
@@ -14,7 +22,7 @@ public class Key extends Item {
         this.keyID = keyID;
     }
 
-    public Integer getKeyID() {
+    Integer getKeyID() {
         return keyID;
     }
 }

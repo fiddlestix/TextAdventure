@@ -3,12 +3,19 @@ package textadventure;
 import java.util.Objects;
 
 /**
- * Created by jeffs_000 on 4/22/2017.
+ * Represents a DirectionLock that requires dropping a specific item to unlock.
  */
-public class DropLock extends DirectionLock {
+class DropLock extends DirectionLock {
 
+    /**
+     * The one-word identifier of the required key-item.
+     */
     private String keyItemIdentifier;
 
+    /**
+     * Creates a DropLock object with the given identifier.
+     * @param keyItemIdentifier The item identifier required to unlock the DropLock.
+     */
     DropLock(String keyItemIdentifier) {
         this.setName("A lock on a door");
         this.setDescription("A lock on a door that is opened by dropping an item.");
@@ -17,6 +24,11 @@ public class DropLock extends DirectionLock {
         this.keyItemIdentifier = keyItemIdentifier;
     }
 
+    /**
+     * Checks if the correct item identifier is given and unlocks the DropLock.
+     * @param keyItemIdentifier The item identifier of the dropped item.
+     * @return True if the item identifier is correct for the DropLock and unlocks it, false if it is not.
+     */
     boolean open(String keyItemIdentifier) {
         if(this.checkIsLocked()) {
             if (Objects.equals(keyItemIdentifier, this.keyItemIdentifier)) {
@@ -26,7 +38,7 @@ public class DropLock extends DirectionLock {
         } else return false;
     }
 
-    public String getKeyItemIdentifier() {
+    String getKeyItemIdentifier() {
         return keyItemIdentifier;
     }
 }

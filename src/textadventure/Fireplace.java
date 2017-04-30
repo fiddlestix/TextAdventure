@@ -1,11 +1,14 @@
 package textadventure;
 
 /**
- * Created by J on 4/22/2017.
+ * Represents a fireplace in the world that locks a direction
+ * in a room, and unlocks when it is lit.
  */
+class Fireplace extends DirectionLock {
 
-public class Fireplace extends DirectionLock {
-
+    /**
+     * Creates a Fireplace DirectionLock object.
+     */
     Fireplace() {
         this.setName("A fireplace");
         this.setDescription("A large stone fireplace.");
@@ -13,6 +16,9 @@ public class Fireplace extends DirectionLock {
         this.setIsLocked(true);
     }
 
+    /**
+     * Unlocks the DirectionLock
+     */
     void light() {
         this.setIsLocked(false);
     }

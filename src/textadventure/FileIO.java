@@ -6,26 +6,19 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * Text-based Adventure Game
- *
- * A project for CMSC 495 7982
- * Trends and Projects in Computer Science
- * University of Maryland University College
- *
- * Jeff Schouw
- * Mansukh Saini
- * Lionel Rockymore
- *
- * FileIO.java
- * A class that groups all functionality for file input/output.
+ * A class that contains all of the functionality for file input and output.
  */
-
 class FileIO {
 
     // *******************
     // ***** Methods *****
     // *******************
 
+    /**
+     * Creates a MapArea object using data from a txt file.
+     * The txt file is hard-coded into the application as 'map.txt'.
+     * @return The MapArea object created from the data in the file.
+     */
     static MapArea loadMapFromFile() {
         MapArea newMapArea = new MapArea();
 
@@ -95,6 +88,12 @@ class FileIO {
         return newMapArea;
     }
 
+    /**
+     * Splits a string into multiple lines if they exceed the given character limit.
+     * @param text String to break up.
+     * @param lineLimit Character limit to stop line at.
+     * @return Formatted string split up into multiple lines.
+     */
     static String formatTextForConsole(String text, Integer lineLimit) {
         int lineLength = 0;
         String formattedText = "";

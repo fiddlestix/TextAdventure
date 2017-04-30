@@ -1,37 +1,38 @@
 package textadventure;
 
 /**
- * Text-based Adventure Game
- *
- * A project for CMSC 495 7982
- * Trends and Projects in Computer Science
- * University of Maryland University College
- *
- * Jeff Schouw
- * Mansukh Saini
- * Lionel Rockymore
- *
- * Item.java
- * A superclass for items and objects.
+ * A superclass for all objects within the world. Objects can
+ * be picked up and carried in the player's inventory, and used
+ * in different ways.
  */
 
 class Item {
     // ******************
     // ***** Fields *****
     // ******************
-    private String name;
-    private String description;
-    private String identifier;
+    private String name; // A short name for the item
+    private String description; // A short description for the item
+    private String identifier; // A one-word identifier for the item such as 'key' or 'idol'
 
     // ************************
     // ***** Constructors *****
     // ************************
+
+    /**
+     * Creates a default Item object.
+     */
     Item() {
         this.name = "Default item name";
         this.description = "Default item description";
         this.identifier = "default";
     }
 
+    /**
+     * Creates an Item object using the given parameters.
+     * @param newName Name for the item.
+     * @param newDescription Description for the item.
+     * @param newIdentifier Identifier for the item.
+     */
     Item(String newName, String newDescription, String newIdentifier) {
         this.name = newName;
         this.description = newDescription;

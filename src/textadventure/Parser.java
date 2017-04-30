@@ -1,32 +1,22 @@
 package textadventure;
 
 /**
- * Text-based Adventure Game
- * <p>
- * A project for CMSC 495 7982
- * Trends and Projects in Computer Science
- * University of Maryland University College
- * <p>
- * Jeff Schouw
- * Mansukh Saini
- * Lionel Rockymore
- * <p>
- * Parser.java
- * A class to parse console commands and execute them.
+ * A class used to parse user input and execute commands accordingly.
+ * Breaks a string entered by the user into 'tokens' which are used as
+ * parameters for commands.
  */
-
 class Parser {
-    // ******************
-    // ***** Fields *****
-    // ******************
-
-    // ************************
-    // ***** Constructors *****
-    // ************************
 
     // *******************
     // ***** Methods *****
     // *******************
+
+    /**
+     * Parses a string given as input from the user and executes the command accordingly.
+     * Gets command parameters from user input, and warns the user if commands are entered
+     * incorrectly.
+     * @param str User input from the command line.
+     */
     static void parseCommand(String str) {
         // Split string by spaces to separate commands from params
         str = str.toLowerCase();

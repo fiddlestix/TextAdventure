@@ -3,27 +3,20 @@ package textadventure;
 import java.util.ArrayList;
 
 /**
- * Text-based Adventure Game
- *
- * A project for CMSC 495 7982
- * Trends and Projects in Computer Science
- * University of Maryland University College
- *
- * Jeff Schouw
- * Mansukh Saini
- * Lionel Rockymore
- *
- * MapArea.java
- * A class that contains a graph of rooms represented by
- * an adjacency list.
+ * Represents a collection of connected rooms. Rooms are represented in
+ * a graph as an adajacency list, corresponding to directional connections
+ * such as 'north', 'northeast', or 'up'.
  */
-
 class MapArea {
+
     // ******************
     // ***** Fields *****
     // ******************
     private ArrayList<MapRoom> roomsInArea;
 
+    /**
+     * This enum data structure is used to track the direction of room connections.
+     */
     enum roomConnectionDirection {
         DIRECTION_NORTH,
         DIRECTION_SOUTH,
@@ -40,31 +33,48 @@ class MapArea {
     // ************************
     // ***** Constructors *****
     // ************************
+
+    /**
+     * Creates a blank map to add rooms and connections to.
+     */
     MapArea() {
         this.roomsInArea = new ArrayList<>();
-    }
-
-    MapArea(ArrayList<MapRoom> newRoomsInArea) {
-        this.roomsInArea = newRoomsInArea;
     }
 
     // *******************
     // ***** Methods *****
     // *******************
+
+    /**
+     * Adds a room to a map object.
+     * @param newRoom The new room to add.
+     */
     void addRoomToArea(MapRoom newRoom) {
         this.getRoomsInArea().add(newRoom);
     }
 
-    boolean connectRooms(MapRoom firstRoom, MapRoom secondRoom, roomConnectionDirection direction) {
+    /**
+     * Connects two rooms in a map, according to the direction given.
+     * The direction is for the first room's connection to the second room,
+     * so the second room's connection to the first room will be the opposite
+     * direction.
+     * @param firstRoom First room to connect.
+     * @param secondRoom Second room to connect.
+     * @param direction Direction for connection from first room to second room.
+     */
+    void connectRooms(MapRoom firstRoom, MapRoom secondRoom, roomConnectionDirection direction) {
         // returns true if successful, false if failed
         if (this.getRoomsInArea().contains(firstRoom) && this.getRoomsInArea().contains(secondRoom)) {
             firstRoom.getConnectedMapRooms().replace(direction, secondRoom);
             secondRoom.getConnectedMapRooms().replace(getOppositeDirection(direction), firstRoom);
-            return true;
         }
-        return false;
     }
 
+    /**
+     * Converts a connection direction to a lowercase string.
+     * @param direction Direction to convert.
+     * @return String representation of given direction.
+     */
     static String convertDirectionToString(roomConnectionDirection direction) {
         String directionString = null;
 
@@ -83,6 +93,11 @@ class MapArea {
         return directionString;
     }
 
+    /**
+     * Converts a string to a connection direction.
+     * @param string String to convert.
+     * @return Direction corresponding to given string.
+     */
     static roomConnectionDirection getDirectionFromString(String string) {
         roomConnectionDirection direction = null;
 
@@ -101,6 +116,11 @@ class MapArea {
         return direction;
     }
 
+    /**
+     * Returns the opposite of the given direction.
+     * @param direction Original direction.
+     * @return Opposite of original direction.
+     */
     private roomConnectionDirection getOppositeDirection(roomConnectionDirection direction) {
         roomConnectionDirection oppositeDirection = null;
         switch (direction) {
@@ -117,9 +137,11 @@ class MapArea {
         }
         return oppositeDirection;
     }
+
     // *******************************
     // ***** Getters and Setters *****
     // *******************************
+
     ArrayList<MapRoom> getRoomsInArea() {
         return this.roomsInArea;
     }

@@ -3,13 +3,19 @@ package textadventure;
 import java.util.Objects;
 
 /**
- * Created by J on 4/21/2017.
+ * Represents a standard key lock for a door. Requires a specific key to unlock.
  */
+class KeyLock extends DirectionLock {
 
-public class KeyLock extends DirectionLock {
-
+    /**
+     * The identifier for the key and its lock.
+     */
     private Integer keyID;
 
+    /**
+     * Creates a KeyLock object using the given keyID
+     * @param keyID The identifier for the key/lock combo
+     */
     KeyLock(Integer keyID) {
         this.setName("A locked door");
         this.setDescription("A lock that requires a key.");
@@ -18,6 +24,11 @@ public class KeyLock extends DirectionLock {
         this.keyID = keyID;
     }
 
+    /**
+     * Checks for the correct keyID and unlocks the lock.
+     * @param keyID The attempted keyID
+     * @return True if the keyID is correct and the lock is unlocked, false if it is not.
+     */
     boolean unlock(Integer keyID) {
         if(this.checkIsLocked()) {
             if (Objects.equals(keyID, this.keyID)) {

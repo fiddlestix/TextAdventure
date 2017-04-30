@@ -1,24 +1,14 @@
 package textadventure;
 
 /**
- * Text-based Adventure Game
- *
- * A project for CMSC 495 7982
- * Trends and Projects in Computer Science
- * University of Maryland University College
- *
- * Jeff Schouw
- * Mansukh Saini
- * Lionel Rockymore
- *
- * Lever.java
- * A class that represents a lever object in the world.
- * A lever is a DirectionLock, able to lock access to a room
- * until the user pulls the lever.
+ * Represents a Lever object, used to lock connections to other rooms.
+ * Must be 'pulled' to unlock.
  */
-
 class Lever extends DirectionLock {
 
+    /**
+     * Creates a default Lever DirectionLock object.
+     */
     Lever() {
         this.setName("A lever");
         this.setDescription("A lever meant to be pulled or pushed.");
@@ -26,12 +16,13 @@ class Lever extends DirectionLock {
         this.setIsLocked(true);
     }
 
-    boolean pull() {
+    /**
+     * Unlocks the lever DirectionLock object.
+     */
+    void pull() {
         if(this.checkIsLocked()) {
             this.setIsLocked(false);
-            return true;
         } else {
-            return false;
         }
     }
 }

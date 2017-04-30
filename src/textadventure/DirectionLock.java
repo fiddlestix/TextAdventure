@@ -1,33 +1,18 @@
 package textadventure;
 
 /**
- * Text-based Adventure Game
- *
- * A project for CMSC 495 7982
- * Trends and Projects in Computer Science
- * University of Maryland University College
- *
- * Jeff Schouw
- * Mansukh Saini
- * Lionel Rockymore
- *
- * DirectionLock.java
- * A class to lock room connections and block access to rooms.
+ * Represents a lock on the connection to another area of the map.
+ * Blocks access to areas of the map and require interaction to unlock.
  */
-
 class DirectionLock {
-    private Boolean isLocked;
-    private String name;
-    private String description;
-    private String identifier;
+    private Boolean isLocked; // Whether or not the lock is currently locked
+    private String name; // A short name for the lock
+    private String description; // A short description of the lock
+    private String identifier; // A one-word identifier for the lock
 
-    DirectionLock(String newName, String newDescription, String newIdentifier) {
-        this.name = newName;
-        this.description = newDescription;
-        this.identifier = newIdentifier;
-        this.isLocked = false;
-    }
-
+    /**
+     * Creates a default DirectionLock object.
+     */
     DirectionLock() {
         this.name = "Default lock name";
         this.description = "Default lock description";

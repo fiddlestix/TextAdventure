@@ -1,35 +1,24 @@
 package textadventure;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * Text-based Adventure Game
- *
- * A project for CMSC 495 7982
- * Trends and Projects in Computer Science
- * University of Maryland University College
- *
- * Jeff Schouw
- * Mansukh Saini
- * Lionel Rockymore
- *
- * Main.java
- * An executable class, contains main() method to start application.
+ * Executes the application and starts the game 'Just Another Day'.
  */
-
 class Main {
 
+    // A character limit for lines printed to the console, used to wrap lines that are too long
     private static final int WORDWRAP_LINE_LIMITER = 100;
 
+    /**
+     * main() method, executable part of application.
+     */
     public static void main(String[] args) {
 
-        // Just testing some early map stuff here
-
-        // load map from file
+        // Load map from file
         MapArea mapArea = FileIO.loadMapFromFile();
 
-        // Create a new player starting in room 1
+        // Create a new player starting in the first room
         Player player = new Player(mapArea.getRoomsInArea().get(0));
 
         // Create a parser for handling command input
@@ -58,24 +47,31 @@ class Main {
 
             // Display text upon entering a room
             if (!currentRoom.hasRoomBeenVisited()) {
+
                 System.out.println("---------------------------------------------------------------------------------------------------");
                 if (currentRoom.getRoomEntryStoryText() != null) {
+
+                    // Show story text
                     System.out.println(FileIO.formatTextForConsole(currentRoom.getRoomEntryStoryText(), WORDWRAP_LINE_LIMITER));
                     System.out.println("");
+                    // Sleep for 2 seconds (for dramatic effect!)
                     try {
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+
+                // Show room description
                 Command.lookAround();
+
                 if (firstLoop) {
                     currentRoom.setRoomHasBeenVisited(true);
                     firstLoop = false;
                 }
             }
 
-            // Parse and execute the command entered by the user
+            // Parse and execute the next command entered by the user
             Parser.parseCommand(scanner.nextLine());
         }
     }

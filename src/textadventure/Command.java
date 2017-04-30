@@ -4,28 +4,19 @@ import java.util.Objects;
 import textadventure.MapArea.roomConnectionDirection;
 
 /**
- * Text-based Adventure Game
- *
- * A project for CMSC 495 7982
- * Trends and Projects in Computer Science
- * University of Maryland University College
- *
- * Jeff Schouw
- * Mansukh Saini
- * Lionel Rockymore
- *
- * Command.java
- * A class that handles command execution.
+ * Contains all the functionality for executing commands entered by the user.
  */
-
 class Command {
 
-    private static Player player;
+    private static Player player; // A reference to the player, used for command execution
 
     static void setPlayer(Player player) {
         Command.player = player;
     }
 
+    /**
+     * Moves the player in the 'north' direction if there is an unlocked part of the map there.
+     */
     static void north() {
             if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_NORTH) != null) {
                 if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_NORTH)) {
@@ -37,6 +28,9 @@ class Command {
             } else youCannotGoThatWay();
     }
 
+    /**
+     * Moves the player in the 'south' direction if there is an unlocked part of the map there.
+     */
     static void south() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_SOUTH) != null) {
             if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_SOUTH)) {
@@ -48,6 +42,10 @@ class Command {
         } else youCannotGoThatWay();
     }
 
+    /**
+     * Used to display text to the player when entering a room again.
+     * @param roomName The room to enter.
+     */
     private static void reEnterRoom(String roomName) {
         if (Objects.equals(roomName, "stairs")) {
             System.out.println("You use the stairs again.");
@@ -56,6 +54,9 @@ class Command {
         }
     }
 
+    /**
+     * Moves the player in the 'east' direction if there is an unlocked part of the map there.
+     */
     static void east() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_EAST) != null) {
             if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_EAST)) {
@@ -67,6 +68,9 @@ class Command {
         } else youCannotGoThatWay();
     }
 
+    /**
+     * Moves the player in the 'west' direction if there is an unlocked part of the map there.
+     */
     static void west() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_WEST) != null) {
             if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_WEST)) {
@@ -78,6 +82,9 @@ class Command {
         } else youCannotGoThatWay();
     }
 
+    /**
+     * Moves the player in the 'northwest' direction if there is an unlocked part of the map there.
+     */
     static void northwest() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_NORTHWEST) != null) {
             if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_NORTHWEST)) {
@@ -89,6 +96,9 @@ class Command {
         } else youCannotGoThatWay();
     }
 
+    /**
+     * Moves the player in the 'southeast' direction if there is an unlocked part of the map there.
+     */
     static void southeast() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_SOUTHEAST) != null) {
             if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_SOUTHEAST)) {
@@ -100,6 +110,9 @@ class Command {
         } else youCannotGoThatWay();
     }
 
+    /**
+     * Moves the player in the 'northeast' direction if there is an unlocked part of the map there.
+     */
     static void northeast() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_NORTHEAST) != null) {
             if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_NORTHEAST)) {
@@ -111,6 +124,9 @@ class Command {
         } else youCannotGoThatWay();
     }
 
+    /**
+     * Moves the player in the 'southwest' direction if there is an unlocked part of the map there.
+     */
     static void southwest() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_SOUTHWEST) != null) {
             if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_SOUTHWEST)) {
@@ -122,6 +138,9 @@ class Command {
         } else youCannotGoThatWay();
     }
 
+    /**
+     * Moves the player in the 'up' direction if there is an unlocked part of the map there.
+     */
     static void up() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_UP) != null) {
             if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_UP)) {
@@ -133,6 +152,9 @@ class Command {
         } else youCannotGoThatWay();
     }
 
+    /**
+     * Moves the player in the 'down' direction if there is an unlocked part of the map there.
+     */
     static void down() {
         if (player.getCurrentMapRoom().getConnectedMapRooms().get(roomConnectionDirection.DIRECTION_DOWN) != null) {
             if (!player.getCurrentMapRoom().isLocked(roomConnectionDirection.DIRECTION_DOWN)) {
@@ -144,23 +166,38 @@ class Command {
         } else youCannotGoThatWay();
     }
 
+    /**
+     * Displays an error message to the player when there is not an accessible part of the map in the given direction.
+     */
     private static void youCannotGoThatWay() {
         System.out.println("You cannot go in that direction.");
     }
 
+    /**
+     * Displays an error message to the player when the map is locked in the given direction.
+     */
     private static void thatDirectionIsLocked() {
         System.out.println("You cannot go in that direction, the way is locked.");
     }
 
+    /**
+     * Quits the game and shuts down the application.
+     */
     static void quit() {
         System.out.println("Quitting game...\nThanks for playing!");
         System.exit(0);
     }
 
+    /**
+     * Displays an error message to the player when entering an unrecognized command.
+     */
     static void invalidCommand() {
         System.out.println("Command not recognized, type 'help' to see a list of commands.");
     }
 
+    /**
+     * Displays a list of commands in the game.
+     */
     static void help() {
         System.out.println("Commands:");
         System.out.println("Directional commands: n/north, s/south, e/east, w/west");
@@ -173,6 +210,9 @@ class Command {
         System.out.println("");
     }
 
+    /**
+     * Displays the player's inventory
+     */
     static void inventory() {
         System.out.println(" --- Inventory: ---");
         for (Item item : player.getInventory()) {
@@ -180,6 +220,10 @@ class Command {
         }
     }
 
+    /**
+     * Takes an item from a room and places it in the player's inventory.
+     * @param inputString User input from the command line.
+     */
     static void take(String inputString) {
         boolean itemFound = false;
         for(Item item : player.getCurrentMapRoom().getItemsInRoom()) {
@@ -198,6 +242,10 @@ class Command {
         }
     }
 
+    /**
+     * Removes an item from the player's inventory and places it in the current room.
+     * @param inputString User input from the command line.
+     */
     static void drop(String inputString) {
         boolean itemFound = false;
         for (Item item : player.getInventory()) {
@@ -230,6 +278,10 @@ class Command {
         }
     }
 
+    /**
+     * Turns a wheel DirectionLock
+     * @param inputString User input from the command line.
+     */
     static void turn(String inputString) {
         if (Objects.equals(inputString.toLowerCase(), "wheel")) {
             for (roomConnectionDirection direction : roomConnectionDirection.values()) {
@@ -251,6 +303,10 @@ class Command {
         }
     }
 
+    /**
+     * Pulls a Lever DirectionLock
+     * @param inputString User input from the command line.
+     */
     static void pull(String inputString) {
         if (Objects.equals(inputString.toLowerCase(), "lever")) {
             boolean leverFound = false;
@@ -275,6 +331,10 @@ class Command {
         }
     }
 
+    /**
+     * Unlocks a KeyLock in the given direction.
+     * @param inputString User input from the command line.
+     */
     static void unlock(String inputString) {
         roomConnectionDirection direction = MapArea.getDirectionFromString(inputString);
         if (player.getCurrentMapRoom().getDirectionLock(direction) != null) {
@@ -314,6 +374,10 @@ class Command {
         }
     }
 
+    /**
+     * Lights a Fireplace DirectionLock.
+     * @param inputString User input from the command line.
+     */
     static void light(String inputString) {
         if (Objects.equals(inputString.toLowerCase(), "fireplace") || Objects.equals(inputString.toLowerCase(), "fire")) {
             boolean fireFound = false;
@@ -374,6 +438,9 @@ class Command {
         }
     }
 
+    /**
+     * Displays information about the player's current room.
+     */
     static void lookAround() {
         MapRoom.lookAroundRoom(player.getCurrentMapRoom());
     }
