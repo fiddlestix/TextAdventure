@@ -39,6 +39,7 @@ class Main {
         // Show welcome message
         System.out.println("'Just Another Day'\n\n" +
                            "!!! RESIZE YOUR CONSOLE WINDOW TO FIT YOUR SCREEN FOR BEST RESULTS !!!\n" +
+                           "Also remember to use the 'look' (or 'l') command frequently so you don't get lost!\n\n" +
                            "In this game you must interact with the environment to solve puzzles and escape the house.\n" +
                            "Manipulate objects in the world using commands such as 'take key', 'pull lever', or 'inventory'.\n" +
                            "You can look at the room you are in by using the 'look' or 'l' commands.\n" +
