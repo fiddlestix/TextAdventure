@@ -10,9 +10,9 @@ class Command {
 
     private static Player player; // A reference to the player, used for command execution
 
-    static void setPlayer(Player player) {
-        Command.player = player;
-    }
+    // *******************
+    // ***** Methods *****
+    // *******************
 
     /**
      * Moves the player in the 'north' direction if there is an unlocked part of the map there.
@@ -443,5 +443,9 @@ class Command {
      */
     static void lookAround() {
         MapRoom.lookAroundRoom(player.getCurrentMapRoom());
+    }
+
+    static void setPlayer(Player player) {
+        Command.player = player;
     }
 }

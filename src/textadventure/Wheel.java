@@ -22,7 +22,6 @@ class Wheel extends DirectionLock {
     void turn() {
         if(this.checkIsLocked()) {
             this.setIsLocked(false);
-        } else {
         }
     }
 }

@@ -22,7 +22,6 @@ class Lever extends DirectionLock {
     void pull() {
         if(this.checkIsLocked()) {
             this.setIsLocked(false);
-        } else {
         }
     }
 }
